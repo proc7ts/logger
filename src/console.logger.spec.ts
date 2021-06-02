@@ -16,9 +16,20 @@ describe('consoleLogger', () => {
       logSpy = jest.spyOn(console, 'error').mockImplementation(() => { /* do not log */ });
     });
 
-    it('logs to console', () => {
+    it('logs message to console', () => {
       consoleLogger.error('message', 1, 2, 3);
-      expect(logSpy).toHaveBeenCalledWith('%O', 'message', 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
+    });
+    it('logs object to console', () => {
+
+      const object = { name: 'test' };
+
+      consoleLogger.error(object, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith(object, 1, 2, 3);
+    });
+    it('logs `undefined` to console', () => {
+      consoleLogger.error(undefined);
+      expect(logSpy).toHaveBeenCalledWith(undefined);
     });
     it('logs empty message to console', () => {
       consoleLogger.error();
@@ -32,9 +43,20 @@ describe('consoleLogger', () => {
       logSpy = jest.spyOn(console, 'warn').mockImplementation(() => { /* do not log */ });
     });
 
-    it('logs to console', () => {
+    it('logs message to console', () => {
       consoleLogger.warn('message', 1, 2, 3);
-      expect(logSpy).toHaveBeenCalledWith('%O', 'message', 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
+    });
+    it('logs object to console', () => {
+
+      const object = { name: 'test' };
+
+      consoleLogger.warn(object, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith(object, 1, 2, 3);
+    });
+    it('logs `undefined` to console', () => {
+      consoleLogger.warn(undefined);
+      expect(logSpy).toHaveBeenCalledWith(undefined);
     });
     it('logs empty message to console', () => {
       consoleLogger.warn();
@@ -48,9 +70,20 @@ describe('consoleLogger', () => {
       logSpy = jest.spyOn(console, 'info').mockImplementation(() => { /* do not log */ });
     });
 
-    it('logs to console', () => {
+    it('logs message to console', () => {
       consoleLogger.info('message', 1, 2, 3);
-      expect(logSpy).toHaveBeenCalledWith('%O', 'message', 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
+    });
+    it('logs object to console', () => {
+
+      const object = { name: 'test' };
+
+      consoleLogger.info(object, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith(object, 1, 2, 3);
+    });
+    it('logs `undefined` to console', () => {
+      consoleLogger.info(undefined);
+      expect(logSpy).toHaveBeenCalledWith(undefined);
     });
     it('logs empty message to console', () => {
       consoleLogger.info();
@@ -64,9 +97,20 @@ describe('consoleLogger', () => {
       logSpy = jest.spyOn(console, 'debug').mockImplementation(() => { /* do not log */ });
     });
 
-    it('logs to console', () => {
+    it('logs message to console', () => {
       consoleLogger.debug('message', 1, 2, 3);
-      expect(logSpy).toHaveBeenCalledWith('%O', 'message', 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
+    });
+    it('logs object to console', () => {
+
+      const object = { name: 'test' };
+
+      consoleLogger.debug(object, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith(object, 1, 2, 3);
+    });
+    it('logs `undefined` to console', () => {
+      consoleLogger.debug(undefined);
+      expect(logSpy).toHaveBeenCalledWith(undefined);
     });
     it('logs empty message to console', () => {
       consoleLogger.debug();
