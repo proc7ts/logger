@@ -13,6 +13,7 @@ const consoleLogger$error = (/*#__PURE__*/ consoleLogger$log((...args) => consol
 const consoleLogger$warn = (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args)));
 const consoleLogger$info = (/*#__PURE__*/ consoleLogger$log((...args) => console.info(...args)));
 const consoleLogger$debug = (/*#__PURE__*/ consoleLogger$log((...args) => console.debug(...args)));
+const consoleLogger$trace = (/*#__PURE__*/ consoleLogger$log((...args) => console.trace(...args)));
 
 /**
  * Logger instance that logs to console.
@@ -33,6 +34,10 @@ export const consoleLogger: Logger = {
 
   get debug() {
     return consoleLogger$debug;
+  },
+
+  get trace() {
+    return consoleLogger$trace;
   },
 
 };

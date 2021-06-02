@@ -32,6 +32,7 @@ Logger
 - `warn(...args)` - Logs warning.
 - `info(...args)` - Logs informational message.
 - `debug(...args)` - Logs debug message.
+- `trace(...args)` - Logs tracing message. This may lead to outputting of stack trace.
 
 Each method accepts arbitrary number of arguments.
 

@@ -26,4 +26,10 @@ describe('silentLogger', () => {
       expect(silentLogger.debug).toBe(silentLogger.error);
     });
   });
+
+  describe('trace', () => {
+    it('logs nothing', () => {
+      expect(silentLogger.trace).toBe(silentLogger.error);
+    });
+  });
 });

@@ -23,4 +23,8 @@ export const silentLogger: Logger = {
     return silentLogger$log;
   },
 
+  get trace() {
+    return silentLogger$log;
+  },
+
 };
