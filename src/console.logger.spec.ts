@@ -118,4 +118,31 @@ describe('consoleLogger', () => {
     });
   });
 
+  describe('trace', () => {
+
+    beforeEach(() => {
+      logSpy = jest.spyOn(console, 'trace').mockImplementation(() => { /* do not log */ });
+    });
+
+    it('logs message to console', () => {
+      consoleLogger.trace('message', 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
+    });
+    it('logs object to console', () => {
+
+      const object = { name: 'test' };
+
+      consoleLogger.trace(object, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith(object, 1, 2, 3);
+    });
+    it('logs `undefined` to console', () => {
+      consoleLogger.trace(undefined);
+      expect(logSpy).toHaveBeenCalledWith(undefined);
+    });
+    it('logs empty message to console', () => {
+      consoleLogger.trace();
+      expect(logSpy).toHaveBeenCalledWith();
+    });
+  });
+
 });

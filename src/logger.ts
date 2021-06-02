@@ -6,29 +6,38 @@ export interface Logger {
   /**
    * Logs error.
    *
-   * @param args - Log message and arguments.
+   * @param args - Arbitrary arguments to log.
    */
-  error(...args: any[]): void;
+  error(...args: unknown[]): void;
 
   /**
    * Logs warning.
    *
-   * @param args - Log message and arguments.
+   * @param args - Arbitrary arguments to log.
    */
-  warn(...args: any[]): void;
+  warn(...args: unknown[]): void;
 
   /**
    * Logs informational message.
    *
-   * @param args - Log message and arguments.
+   * @param args - Arbitrary arguments to log.
    */
-  info(...args: any[]): void;
+  info(...args: unknown[]): void;
 
   /**
    * Logs debug message.
    *
-   * @param args - Log message and arguments.
+   * @param args - Arbitrary arguments to log.
    */
-  debug(...args: any[]): void;
+  debug(...args: unknown[]): void;
+
+  /**
+   * Logs tracing message.
+   *
+   * This may lead to outputting of stack trace.
+   *
+   * @param args - Arbitrary arguments to log.
+   */
+  trace(...args: unknown[]): void;
 
 }
