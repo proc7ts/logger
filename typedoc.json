@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "name": "Amend",
+  "out": "./target/typedoc",
+  "tsconfig": "tsconfig.main.json"
+}
