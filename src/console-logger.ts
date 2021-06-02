@@ -1,11 +1,11 @@
 import { Logger } from './logger';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
-    if (!args.length) {
-      log();
-    } else {
+    if (args.length && typeof args[0] === 'string') {
       // Avoid formatting.
-      log('%O', ...args);
+      log('%s', ...args);
+    } else {
+      log(...args);
     }
   };
 
