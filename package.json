@@ -1,11 +1,11 @@
 {
   "name": "@proc7ts/logger",
   "version": "1.0.0",
-  "description": "Simple logger API",
+  "description": "Simple logging API for Node.js and browsers",
   "keywords": [
     "log",
     "logger",
-    "logger-api"
+    "logging"
   ],
   "homepage": "https://github.com/proc7ts/logger",
   "repository": {
