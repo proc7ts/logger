@@ -1,13 +1,24 @@
+import { dueLog } from './due-log';
 import { Logger } from './logger';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
-    if (args.length && typeof args[0] === 'string') {
-      // Avoid formatting.
-      log('%s', ...args);
-    } else {
-      log(...args);
-    }
-  };
+  if (!args.length) {
+    log();
+  }
+
+  const { line } = dueLog({ on: 'in', line: args });
+
+  if (!line.length) {
+    return;
+  }
+
+  if (typeof line[0] === 'string') {
+    // Avoid formatting.
+    log('%s', ...line);
+  } else {
+    log(...line);
+  }
+};
 
 const consoleLogger$error = (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args)));
 const consoleLogger$warn = (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args)));
@@ -17,6 +28,12 @@ const consoleLogger$trace = (/*#__PURE__*/ consoleLogger$log((...args) => consol
 
 /**
  * Logger instance that logs to console.
+ *
+ * Processes {@link Loggable} values.
+ *
+ * Ignores [string substitutions].
+ *
+ * [string substitutions]: https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions
  */
 export const consoleLogger: Logger = {
 

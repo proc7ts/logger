@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { SpyInstance } from 'jest-mock';
 import { consoleLogger } from './console-logger';
+import { Loggable } from './loggable';
 
 describe('consoleLogger', () => {
 
@@ -34,6 +35,28 @@ describe('consoleLogger', () => {
     it('logs empty message to console', () => {
       consoleLogger.error();
       expect(logSpy).toHaveBeenCalledWith();
+    });
+    it('processes loggable values', () => {
+
+      const loggable: Loggable = {
+        toLog({ on }) {
+          return on === 'in' ? 'replacement' : undefined;
+        },
+      };
+
+      consoleLogger.error(loggable, 1, 2, 3);
+      expect(logSpy).toHaveBeenCalledWith('%s', 'replacement', 1, 2, 3);
+    });
+    it('does not log empty loggable replacement', () => {
+
+      const remover: Loggable = {
+        toLog(target) {
+          target.line = [];
+        },
+      };
+
+      consoleLogger.error(1, remover, 2, 3);
+      expect(logSpy).not.toHaveBeenCalled();
     });
   });
 
