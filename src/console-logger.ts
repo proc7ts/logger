@@ -1,30 +1,27 @@
-import { dueLog } from './due-log';
 import { Logger } from './logger';
+import { processingLogger } from './processing-logger';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
-  if (!args.length) {
-    log();
-  }
-
-  const { line } = dueLog({ on: 'in', line: args });
-
-  if (!line.length) {
-    return;
-  }
-
-  if (typeof line[0] === 'string') {
+  if (typeof args[0] === 'string') {
     // Avoid formatting.
-    log('%s', ...line);
+    log('%s', ...args);
   } else {
-    log(...line);
+    log(...args);
   }
 };
 
-const consoleLogger$error = (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args)));
-const consoleLogger$warn = (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args)));
-const consoleLogger$info = (/*#__PURE__*/ consoleLogger$log((...args) => console.info(...args)));
-const consoleLogger$debug = (/*#__PURE__*/ consoleLogger$log((...args) => console.debug(...args)));
-const consoleLogger$trace = (/*#__PURE__*/ consoleLogger$log((...args) => console.trace(...args)));
+const consoleLogger$: Logger = (/*#__PURE__*/ processingLogger(
+    {
+      error: (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args))),
+      warn: (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args))),
+      info: (/*#__PURE__*/ consoleLogger$log((...args) => console.info(...args))),
+      debug: (/*#__PURE__*/ consoleLogger$log((...args) => console.debug(...args))),
+      trace: (/*#__PURE__*/ consoleLogger$log((...args) => console.trace(...args))),
+    },
+    {
+      on: 'in',
+    },
+));
 
 /**
  * Logger instance that logs to console.
@@ -38,23 +35,23 @@ const consoleLogger$trace = (/*#__PURE__*/ consoleLogger$log((...args) => consol
 export const consoleLogger: Logger = {
 
   get error() {
-    return consoleLogger$error;
+    return consoleLogger$.error;
   },
 
   get warn() {
-    return consoleLogger$warn;
+    return consoleLogger$.warn;
   },
 
   get info() {
-    return consoleLogger$info;
+    return consoleLogger$.info;
   },
 
   get debug() {
-    return consoleLogger$debug;
+    return consoleLogger$.debug;
   },
 
   get trace() {
-    return consoleLogger$trace;
+    return consoleLogger$.trace;
   },
 
 };
