@@ -7,4 +7,5 @@ export * from './due-log';
 export * from './loggable';
 export * from './logger';
 export * from './processing-logger';
+export * from './proxy-logger';
 export * from './silent-logger';
