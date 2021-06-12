@@ -4,6 +4,7 @@
  */
 export * from './console-logger';
 export * from './due-log';
+export * from './headless-logger';
 export * from './loggable';
 export * from './logger';
 export * from './processing-logger';

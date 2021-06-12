@@ -1,4 +1,4 @@
-import { Logger } from './logger';
+import { HeadlessLogger } from './headless-logger';
 import { processingLogger } from './processing-logger';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
@@ -19,7 +19,7 @@ const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unkno
  *
  * [string substitutions]: https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions
  */
-export const consoleLogger: Logger = (/*#__PURE__*/ processingLogger(
+export const consoleLogger: HeadlessLogger = (/*#__PURE__*/ processingLogger(
     {
       error: (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args))),
       warn: (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args))),

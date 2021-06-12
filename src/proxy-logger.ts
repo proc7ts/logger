@@ -1,3 +1,4 @@
+import { HeadlessLogger } from './headless-logger';
 import { Logger } from './logger';
 
 /**
@@ -6,9 +7,9 @@ import { Logger } from './logger';
  * @param getLogger - A function that returns a logger to proxy log messages to. It is called on _each_ logger method
  * call.
  *
- * @returns New proxy logger.
+ * @returns New headless proxy logger.
  */
-export function proxyLogger(getLogger: (this: void) => Logger): Logger {
+export function proxyLogger(getLogger: (this: void) => Logger): HeadlessLogger {
 
   const logMethod = (log: (logger: Logger, args: unknown[]) => void): (...args: unknown[]) => void => (
       ...args

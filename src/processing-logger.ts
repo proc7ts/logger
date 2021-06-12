@@ -1,4 +1,5 @@
 import { dueLog } from './due-log';
+import { HeadlessLogger } from './headless-logger';
 import { Logger } from './logger';
 
 /**
@@ -7,9 +8,9 @@ import { Logger } from './logger';
  * @param logger - A logger to log processed messages with.
  * @param on - A {@link DueLog.on hint} indicating the logging stage. Undefined by default.
  *
- * @returns New processing logger instance.
+ * @returns New headless processing logger.
  */
-export function processingLogger(logger: Logger, { on }: { on?: string } = {}): Logger {
+export function processingLogger(logger: Logger, { on }: { on?: string } = {}): HeadlessLogger {
 
   const logMethod = (log: (...args: unknown[]) => void): (...args: unknown[]) => void => (...args) => {
     if (args.length) {
