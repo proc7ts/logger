@@ -88,6 +88,7 @@ export namespace DueLog {
  *
  * Processes single `value` instead of the whole log line when the second parameter specified.
  *
+ * @typeParam TTarget - A type of the message to process.
  * @param target - Target (mutable) message to process.
  * @param value - The value to process instead of the one from the log line.
  *
@@ -95,13 +96,16 @@ export namespace DueLog {
  *
  * @see Loggable.toLog for loggable value processing rules.
  */
-export function dueLog(target: DueLog.Target, value?: unknown): DueLog {
+export function dueLog<TTarget extends DueLog.Target>(
+    target: TTarget,
+    value?: unknown,
+): TTarget & DueLog {
 
   const { index = 0 } = target;
 
   target.index = Math.min(Math.max(index, 0), target.line.length);
 
-  const t = target as DueLog;
+  const t = target as TTarget & DueLog;
 
   if (value !== undefined) {
     dueLog$value(t, value);
