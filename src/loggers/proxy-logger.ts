@@ -1,5 +1,5 @@
-import { HeadlessLogger } from './headless-logger';
-import { Logger } from './logger';
+import { HeadlessLogger } from '../headless-logger';
+import { Logger } from '../logger';
 
 /**
  * Creates a logger that proxies logging to another one.

@@ -1,4 +1,4 @@
-import { HeadlessLogger } from './headless-logger';
+import { HeadlessLogger } from '../headless-logger';
 
 const silentLogger$log = (..._args: unknown[]): void => { /* Do not log */ };
 

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
-import { Logger } from './logger';
+import { Logger } from '../logger';
 import { proxyLogger } from './proxy-logger';
 
 describe('proxyLogger', () => {

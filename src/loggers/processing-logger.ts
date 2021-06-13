@@ -1,6 +1,6 @@
-import { dueLog } from './due-log';
-import { HeadlessLogger } from './headless-logger';
-import { Logger } from './logger';
+import { HeadlessLogger } from '../headless-logger';
+import { dueLog } from '../loggable';
+import { Logger } from '../logger';
 
 /**
  * Creates a logger that processes {@link Loggable} values and logs with another logger.

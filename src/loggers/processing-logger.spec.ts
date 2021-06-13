@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { Loggable } from './loggable';
-import { Logger } from './logger';
+import { Loggable } from '../loggable';
+import { Logger } from '../logger';
 import { processingLogger } from './processing-logger';
 
 describe('processingLogger', () => {

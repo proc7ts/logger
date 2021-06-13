@@ -1,4 +1,4 @@
-import { HeadlessLogger } from './headless-logger';
+import { HeadlessLogger } from '../headless-logger';
 import { processingLogger } from './processing-logger';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
