@@ -2,8 +2,10 @@ import { DueLog } from './due-log';
 
 /**
  * A value that may be logged in a custom way.
+ *
+ * @typeParam TTarget - Processed message type.
  */
-export interface Loggable {
+export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
 
   /**
    * Performs additional message processing before it is logged.
@@ -36,7 +38,7 @@ export interface Loggable {
    * @returns Either new loggable value representation, or nothing or `this` value itself to not replace its loggable
    * representation.
    */
-  toLog(target: DueLog): void | unknown;
+  toLog(target: TTarget & DueLog): void | unknown;
 
 }
 
