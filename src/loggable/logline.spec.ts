@@ -59,10 +59,10 @@ describe('logline', () => {
   });
 
   function fmt(strings: TemplateStringsArray, ...args: unknown[]): unknown[] {
-    return dueLog({ line: logline(strings, ...args) }).line;
+    return dueLog({ line: [logline(strings, ...args)] }).line;
   }
 
   function infmt(strings: TemplateStringsArray, ...args: unknown[]): unknown[] {
-    return dueLog({ on: 'in', line: logline(strings, ...args) }).line;
+    return dueLog({ on: 'in', line: [logline(strings, ...args)] }).line;
   }
 });

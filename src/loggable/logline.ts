@@ -30,57 +30,79 @@ const logline$join = (result: unknown[], line: unknown[]): void => {
   }
 };
 
+/**
+ * A tagged string prefix that creates a {@link Loggable} value that expands to log line.
+ *
+ * The log line is created accordingly to the following rules:
+ *
+ * 1. Template strings and values not separated with whitespace are joined into single string.
+ * 2. The values separated by whitespaces are added to the log line as is.
+ * 3. Template strings are trimmed.
+ * 4. Any number of subsequent whitespaces in template string is replaced with single space.
+ * 5. Leading and/or trailing template string is removed if it became empty.
+ *
+ * All {@link Loggable} values processes before being joined into string. They may be processed as many times as
+ * requested. The joining when the {@link DueLog.on logging stage} is set to `out` or is undefined.
+ *
+ * @returns New loggable value.
+ */
 export function logline(
     strings: TemplateStringsArray,
     ...args: readonly unknown[]
-): unknown[] {
+): Loggable {
+  return {
 
-  const result: unknown[] = [];
-  let joins: unknown[] = [];
-  const length = args.length;
-  let prefixJoined = false;
+    toLog() {
 
-  for (let i = 0; i < length; ++i) {
+      const result: unknown[] = [];
+      let joins: unknown[] = [];
+      const length = args.length;
+      let prefixJoined = false;
 
-    const arg = args[i];
-    const prefix = strings[i];
-    const suffix = strings[i + 1];
+      for (let i = 0; i < length; ++i) {
 
-    if (!prefix || !logline$lastWsPattern.test(prefix)) {
-      if (!prefixJoined) {
-        logline$append(joins, prefix);
+        const arg = args[i];
+        const prefix = strings[i];
+        const suffix = strings[i + 1];
+
+        if (!prefix || !logline$lastWsPattern.test(prefix)) {
+          if (!prefixJoined) {
+            logline$append(joins, prefix);
+          }
+          joins.push(arg);
+          if (!suffix || !logline$firstWsPattern.test(suffix)) {
+            logline$append(joins, suffix);
+            prefixJoined = true;
+          } else {
+            logline$join(result, joins);
+            joins = [];
+            prefixJoined = false;
+          }
+        } else {
+          logline$join(result, joins);
+          joins = [];
+          if (!prefixJoined) {
+            logline$append(result, prefix);
+          }
+
+          if (!suffix || !logline$firstWsPattern.test(suffix)) {
+            joins.push(arg);
+            logline$append(joins, suffix);
+            prefixJoined = true;
+          } else {
+            result.push(arg);
+            prefixJoined = false;
+          }
+        }
       }
-      joins.push(arg);
-      if (!suffix || !logline$firstWsPattern.test(suffix)) {
-        logline$append(joins, suffix);
-        prefixJoined = true;
-      } else {
-        logline$join(result, joins);
-        joins = [];
-        prefixJoined = false;
-      }
-    } else {
+
       logline$join(result, joins);
-      joins = [];
       if (!prefixJoined) {
-        logline$append(result, prefix);
+        logline$append(result, strings[length]);
       }
 
-      if (!suffix || !logline$firstWsPattern.test(suffix)) {
-        joins.push(arg);
-        logline$append(joins, suffix);
-        prefixJoined = true;
-      } else {
-        result.push(arg);
-        prefixJoined = false;
-      }
-    }
-  }
+      return result;
+    },
 
-  logline$join(result, joins);
-  if (!prefixJoined) {
-    logline$append(result, strings[length]);
-  }
-
-  return result;
+  };
 }
