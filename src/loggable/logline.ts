@@ -46,12 +46,12 @@ export function logline(
     const prefix = strings[i];
     const suffix = strings[i + 1];
 
-    if (prefix && !logline$lastWsPattern.test(prefix)) {
+    if (!prefix || !logline$lastWsPattern.test(prefix)) {
       if (!prefixJoined) {
         logline$append(joins, prefix);
       }
       joins.push(arg);
-      if (suffix && !logline$firstWsPattern.test(suffix)) {
+      if (!suffix || !logline$firstWsPattern.test(suffix)) {
         logline$append(joins, suffix);
         prefixJoined = true;
       } else {
@@ -66,7 +66,7 @@ export function logline(
         logline$append(result, prefix);
       }
 
-      if (suffix && !logline$firstWsPattern.test(suffix)) {
+      if (!suffix || !logline$firstWsPattern.test(suffix)) {
         joins.push(arg);
         logline$append(joins, suffix);
         prefixJoined = true;

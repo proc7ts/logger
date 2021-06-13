@@ -7,6 +7,9 @@ describe('logline', () => {
   it('joins non-separate values', () => {
     expect(fmt`1${2}3${4}5`).toEqual(['12345']);
   });
+  it('joins subsequent non-separate values', () => {
+    expect(fmt`1 ${2}${3}${4} 5`).toEqual(['1', '234', '5']);
+  });
   it('does not join with separate prefix', () => {
     expect(fmt`1 ${2}3`).toEqual(['1', '23']);
   });
