@@ -39,8 +39,8 @@ describe('consoleLogger', () => {
     it('processes loggable values', () => {
 
       const loggable: Loggable = {
-        toLog({ on }) {
-          return on === 'in' ? 'replacement' : undefined;
+        toLog() {
+          return 'replacement';
         },
       };
 

@@ -19,15 +19,10 @@ const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unkno
  *
  * [string substitutions]: https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions
  */
-export const consoleLogger: HeadlessLogger = (/*#__PURE__*/ processingLogger(
-    {
-      error: (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args))),
-      warn: (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args))),
-      info: (/*#__PURE__*/ consoleLogger$log((...args) => console.info(...args))),
-      debug: (/*#__PURE__*/ consoleLogger$log((...args) => console.debug(...args))),
-      trace: (/*#__PURE__*/ consoleLogger$log((...args) => console.trace(...args))),
-    },
-    {
-      on: 'in',
-    },
-));
+export const consoleLogger: HeadlessLogger = (/*#__PURE__*/ processingLogger({
+  error: (/*#__PURE__*/ consoleLogger$log((...args) => console.error(...args))),
+  warn: (/*#__PURE__*/ consoleLogger$log((...args) => console.warn(...args))),
+  info: (/*#__PURE__*/ consoleLogger$log((...args) => console.info(...args))),
+  debug: (/*#__PURE__*/ consoleLogger$log((...args) => console.debug(...args))),
+  trace: (/*#__PURE__*/ consoleLogger$log((...args) => console.trace(...args))),
+}));

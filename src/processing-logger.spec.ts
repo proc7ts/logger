@@ -9,12 +9,15 @@ describe('processingLogger', () => {
     const logger = {
       error: jest.fn(),
     } as Partial<Logger> as Logger;
-    const processing = processingLogger(logger);
-    const loggable: Loggable = {
-      toLog: () => 'logged',
+    const processing = processingLogger(logger, { on: 'in' });
+    const loggable1: Loggable = {
+      toLog: ({ on = 'in' }) => on === 'in' ? 'logged-in' : undefined,
+    };
+    const loggable2: Loggable = {
+      toLog: ({ on = 'out' }) => on === 'out' ? 'logged-out' : undefined,
     };
 
-    processing.error(1, loggable, 2, 3);
-    expect(logger.error).toHaveBeenCalledWith(1, 'logged', 2, 3);
+    processing.error(1, loggable1, loggable2, 2);
+    expect(logger.error).toHaveBeenCalledWith(1, 'logged-in', loggable2, 2);
   });
 });
