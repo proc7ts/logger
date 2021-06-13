@@ -1,6 +1,6 @@
 {
   "name": "@proc7ts/logger",
-  "version": "1.2.0-dev.0",
+  "version": "1.2.0-dev.1",
   "description": "Simple logging API for Node.js and browsers",
   "keywords": [
     "log",
