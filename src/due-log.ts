@@ -1,4 +1,4 @@
-import { isLoggable } from './loggable';
+import { isLoggable, Loggable } from './loggable';
 
 /**
  * A message about to be logged.
@@ -81,16 +81,53 @@ export namespace DueLog {
 
   }
 
+  /**
+   * Custom loggable value processing handlers.
+   *
+   * @typeParam TTarget - Processed message type.
+   */
+  export interface Handlers<TTarget extends DueLog.Target = DueLog.Target> {
+
+    /**
+     * Handles raw (i.e. non-{@link Loggable}) value.
+     *
+     * The handler execution results treated similarly to {@link Loggable.toLog}.
+     *
+     * Does nothing by default.
+     *
+     * @param target - Target (mutable) message to process.
+     * @param value - The raw value to process.
+     *
+     * @returns Either new loggable value representation, or nothing or `this` value itself to not replace its loggable
+     * representation.
+     */
+    onRaw?(this: void, target: TTarget & DueLog, value: unknown): void | unknown;
+
+    /**
+     * Handles {@link Loggable} value.
+     *
+     * The handler execution results treated similarly to {@link Loggable.toLog}.
+     *
+     * By default, calls {@link Loggable.toLog} and returns its value.
+     *
+     * @param target - Target (mutable) message to process.
+     * @param value - The loggable value to process.
+     *
+     * @returns Either new loggable value representation, or nothing or `this` value itself to not replace its loggable
+     * representation.
+     */
+    onLoggable?(this: void, target: TTarget & DueLog, value: Loggable): void | unknown;
+
+  }
+
 }
 
 /**
  * Processes the target log message.
  *
- * Processes single `value` instead of the whole log line when the second parameter specified.
- *
- * @typeParam TTarget - A type of the message to process.
+ * @typeParam TTarget - Processed message type.
  * @param target - Target (mutable) message to process.
- * @param value - The value to process instead of the one from the log line.
+ * @param handlers - Custom value handlers.
  *
  * @returns Processed `target` message.
  *
@@ -98,61 +135,53 @@ export namespace DueLog {
  */
 export function dueLog<TTarget extends DueLog.Target>(
     target: TTarget,
-    value?: unknown,
+    handlers?: DueLog.Handlers<TTarget>,
+): TTarget & DueLog;
+
+export function dueLog<TTarget extends DueLog.Target>(
+    target: TTarget,
+    {
+      onRaw = DueLog$onRaw,
+      onLoggable = DueLog$onLoggable,
+    }: DueLog.Handlers<TTarget> = {},
 ): TTarget & DueLog {
 
-  const { index = 0 } = target;
+  const { index: firstIndex = 0 } = target;
 
-  target.index = Math.min(Math.max(index, 0), target.line.length);
+  target.index = Math.max(firstIndex, 0);
 
-  const t = target as TTarget & DueLog;
+  const due = target as TTarget & DueLog;
 
-  if (value !== undefined) {
-    dueLog$value(t, value);
-  } else {
-    while (t.index < t.line.length) {
-      dueLog$value(t, t.line[t.index]);
+  while (due.index < due.line.length) {
+
+    const { line, index } = due;
+    const value = line[index];
+    const toLog = isLoggable(value)
+        ? onLoggable(due, value)
+        : onRaw(due, value);
+
+    if (due.index !== index) {
+      due.index = Math.max(due.index, 0);
+    } else if (due.line === line) {
+      if (toLog === undefined || toLog === value) {
+        ++due.index;
+      } else if (!isLoggable(toLog) && Array.isArray(toLog)) {
+        line.splice(index, 1, ...toLog);
+      } else {
+        line[index] = toLog;
+      }
     }
   }
 
-  return t;
+  due.index = Math.min(due.index, due.line.length);
+
+  return due;
 }
 
-function dueLog$value(target: DueLog, value: unknown): void {
+function DueLog$onRaw(_target: DueLog, _value: unknown): void {
+  // Do not process the value.
+}
 
-  const { line, index } = target;
-
-  for (; ;) {
-    if (!isLoggable(value)) {
-      ++target.index;
-      break;
-    }
-
-    const toLog = value.toLog(target);
-
-    if (target.index !== index) {
-      target.index = Math.max(target.index, 0);
-      break;
-    }
-    if (target.line !== line) {
-      break;
-    }
-    if (toLog === undefined || toLog === value) {
-      ++target.index;
-      break;
-    }
-
-    if (!isLoggable(toLog) && Array.isArray(toLog)) {
-      line.splice(index, 1, ...toLog);
-      if (index >= line.length) {
-        target.index = line.length;
-        break;
-      }
-      value = line[index];
-    } else {
-      value = line[index] = toLog;
-    }
-  }
-
-  target.index = Math.min(target.index, target.line.length);
+function DueLog$onLoggable(target: DueLog, value: Loggable): void | unknown {
+  return value.toLog(target);
 }
