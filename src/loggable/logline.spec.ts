@@ -5,6 +5,11 @@ import { Loggable } from './loggable';
 import { logline } from './logline';
 
 describe('logline', () => {
+
+  const logToNone: Loggable = {
+    toLog: () => [],
+  };
+
   it('joins non-separate values', () => {
     expect(log(logline`1${2}3${4}5`)).toEqual(['12345']);
   });
@@ -52,7 +57,7 @@ describe('logline', () => {
       toLog: () => '*',
     };
 
-    const [item] = logOn('in', logline`-${loggable}-`);
+    const [item] = logOn('in', logline`-${loggable}-`)!;
 
     expect(typeof item).toBe('object');
 
@@ -62,14 +67,30 @@ describe('logline', () => {
     expect(log('(start)', ...logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
     expect(log('(start)', logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
   });
+  it('produces nothing on empty log line', () => {
+    expect(log(logline``)).toBeUndefined();
+    expect(log(...logline``)).toEqual([]);
+    expect(log(logline`  `)).toBeUndefined();
+    expect(log(...logline`  `)).toEqual([]);
+  });
+  it('handles no-op loggable values', () => {
+    expect(log(logline`(${logToNone}${logToNone})`)).toEqual(['()']);
+    expect(log(logline`( ${logToNone}${logToNone} )`)).toEqual(['(', ')']);
+    expect(log(logline`(${logToNone}${logToNone} )`)).toEqual(['(', ')']);
+    expect(log(logline`( ${logToNone}${logToNone})`)).toEqual(['(', ')']);
+    expect(log(logline`( ${logToNone} ${logToNone} )`)).toEqual(['(', ')']);
+    expect(log(logline`(${logToNone} ${logToNone})`)).toEqual(['(', ')']);
+    expect(log(logline`${logToNone} ${logToNone}`)).toBeUndefined();
+    expect(log(logline`${logToNone}${logToNone}`)).toBeUndefined();
+  });
 
-  function log(...args: unknown[]): unknown[] {
+  function log(...args: unknown[]): unknown[] | undefined {
     return logOn(undefined, ...args);
   }
 
-  function logOn(on: string | undefined, ...args: unknown[]): unknown[] {
+  function logOn(on: string | undefined, ...args: unknown[]): unknown[] | undefined {
 
-    let logged!: unknown[];
+    let logged: unknown[] | undefined;
     const logger: Partial<Logger> = {
       info(...args: unknown[]) {
         logged = args;
