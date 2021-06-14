@@ -59,8 +59,8 @@ describe('logline', () => {
     expect(logOn('out', item)).toEqual(['-*-']);
   });
   it('can be expanded explicitly or automatically', () => {
-    expect(log(...logline`1 ${2} 3`)).toEqual(['1', 2, '3']);
-    expect(log(logline`1 ${2} 3`)).toEqual(['1', 2, '3']);
+    expect(log('(start)', ...logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
+    expect(log('(start)', logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
   });
 
   function log(...args: unknown[]): unknown[] {

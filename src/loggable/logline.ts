@@ -1,4 +1,4 @@
-import { dueLog, DueLog } from './due-log';
+import { DueLog } from './due-log';
 import { Loggable } from './loggable';
 
 const logline$firstWsPattern = /^\s/;
@@ -14,15 +14,34 @@ const logline$append = (result: unknown[], str: string): void => {
     result.push(text);
   }
 };
-const logline$join = (result: unknown[], line: unknown[]): void => {
-  if (line.length) {
+const logline$join = (result: unknown[], joins: unknown[]): void => {
+  if (joins.length) {
 
     const loggable: Loggable = {
-      toLog({ on = 'out' }: DueLog): string | void {
-        line = dueLog({ line }).line;
-        if (on === 'out') {
-          return line.join('');
-        }
+      toLog(target: DueLog): string | void {
+
+        // Remember the containing log line and position.
+        const { on = 'out', line, index } = target;
+
+        // The loggable to apply after joining.
+        const endJoin: Loggable = {
+          toLog(target) {
+            // Read the join results.
+            joins = target.line.slice(0, -1); // The last element is this loggable.
+            if (on === 'out') {
+              // Finally join into a string.
+              line[index] = joins.join('');
+            }
+            // Restore containing log line.
+            target.line = line;
+            // Go on from the next element to avoid immediate re-processing.
+            target.index = index + 1;
+          },
+        };
+
+        // Initiate joining by replacing target log line.
+        target.line = [...joins, /* resumes normal processing */ endJoin];
+        target.index = 0;
       },
     };
 
