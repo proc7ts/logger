@@ -14,8 +14,8 @@ export interface DueLog {
    *
    * Possible values are:
    *
-   * - `'in'` is set for logger input. I.e. for the log line passed to the logger method.
-   * - `'out'` is set by log writer. I.e. right before the message is written to the log.
+   * - `'in'` is set for logger input. I.e., for the log line passed to the logger method.
+   * - `'out'` is set by log writer. I.e., right before the message written to the log.
    * - `undefined` when the value should be processed unconditionally.
    *
    * Some logger implementations may wish to use this hint for special processing. If the stage is not recognized
@@ -32,8 +32,6 @@ export interface DueLog {
 
   /**
    * An index of currently processed element of the log {@link line}.
-   *
-   * May be equal to the log line length to indicate additional value processing that may affect the message to log.
    *
    * Can be modified to specify the next element to process.
    */
@@ -73,7 +71,7 @@ export namespace DueLog {
      * Defaults to `0`. When set to negative value, reset to `0`. When set to the value greater than the length of the
      * log line, reset to the log line length.
      *
-     * After processing will be set to the value equal or greater then the length of the final log line.
+     * After processing will be set to the length of the final log line.
      *
      * @see DueLog.index
      */
