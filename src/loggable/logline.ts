@@ -1,14 +1,11 @@
 import { DueLog } from './due-log';
 import { Loggable } from './loggable';
 
-const logline$firstWsPattern = /^\s/;
-const logline$lastWsPattern = /\s$/;
 const logline$eachWsPattern = /\s+/g;
-const logline$replaceByString = (): string => ' ';
-const logline$normalize = (str: string): string => str.trim().replace(logline$eachWsPattern, logline$replaceByString);
+const logline$insertSpace = (): string => ' ';
 const logline$append = (result: unknown[], str: string): void => {
 
-  const text = logline$normalize(str);
+  const text = str.replace(logline$eachWsPattern, logline$insertSpace);
 
   if (text) {
     result.push(text);
@@ -96,49 +93,51 @@ export function logline(
 
   let joins: unknown[] = [];
   const length = args.length;
-  let prefixJoined = false;
+  const firstPrefix = strings[0].trimLeft();
+  let prefix = firstPrefix.trimRight();
+  let joinArg = firstPrefix && firstPrefix.length === prefix.length;
+
+  logline$append(joinArg ? joins : result, prefix);
 
   for (let i = 0; i < length; ++i) {
 
     const arg = args[i];
-    const prefix = strings[i];
-    const suffix = strings[i + 1];
+    const nextSuffix = strings[i + 1];
+    const suffix = nextSuffix.trimLeft();
+    let joinSuffix = false;
 
-    if (!prefix || !logline$lastWsPattern.test(prefix)) {
-      if (!prefixJoined) {
-        logline$append(joins, prefix);
-      }
+    if (joinArg) {
       joins.push(arg);
-      if (!suffix || !logline$firstWsPattern.test(suffix)) {
-        logline$append(joins, suffix);
-        prefixJoined = true;
+      if (!nextSuffix || nextSuffix.length === suffix.length) {
+        joinSuffix = true;
       } else {
         logline$join(result, joins);
         joins = [];
-        prefixJoined = false;
       }
     } else {
       logline$join(result, joins);
       joins = [];
-      if (!prefixJoined) {
-        logline$append(result, prefix);
-      }
-
-      if (!suffix || !logline$firstWsPattern.test(suffix)) {
+      if (!nextSuffix || nextSuffix.length === suffix.length) {
         joins.push(arg);
-        logline$append(joins, suffix);
-        prefixJoined = true;
+        joinSuffix = true;
       } else {
         result.push(arg);
-        prefixJoined = false;
       }
+    }
+
+    prefix = suffix.trimRight();
+
+    joinArg = suffix ? prefix.length === suffix.length : !nextSuffix;
+    if (joinSuffix) {
+      logline$append(joins, prefix);
+    } else {
+      logline$join(result, joins);
+      joins = [];
+      logline$append(joinArg ? joins : result, prefix);
     }
   }
 
   logline$join(result, joins);
-  if (!prefixJoined) {
-    logline$append(result, strings[length]);
-  }
 
   return result;
 }
