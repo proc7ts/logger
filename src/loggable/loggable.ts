@@ -30,9 +30,6 @@ export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
    *    recurrent processing. This also makes it possible to remove the value from the log line by returning an empty
    *    array.
    *
-   * If the message processing results to empty log line, then the message won't be logged at all. Note that this
-   * won't prevent initially empty log messages from being logged.
-   *
    * @param target - Log message to process containing this loggable value at the specified {@link DueLog.index index}.
    *
    * @returns Either new loggable value representation, or nothing or `this` value itself to not replace its loggable

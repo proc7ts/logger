@@ -68,9 +68,9 @@ describe('logline', () => {
     expect(log('(start)', logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
   });
   it('produces nothing on empty log line', () => {
-    expect(log(logline``)).toBeUndefined();
+    expect(log(logline``)).toEqual([]);
     expect(log(...logline``)).toEqual([]);
-    expect(log(logline`  `)).toBeUndefined();
+    expect(log(logline`  `)).toEqual([]);
     expect(log(...logline`  `)).toEqual([]);
   });
   it('handles no-op loggable values', () => {
@@ -80,17 +80,17 @@ describe('logline', () => {
     expect(log(logline`( ${logToNone}${logToNone})`)).toEqual(['(', ')']);
     expect(log(logline`( ${logToNone} ${logToNone} )`)).toEqual(['(', ')']);
     expect(log(logline`(${logToNone} ${logToNone})`)).toEqual(['(', ')']);
-    expect(log(logline`${logToNone} ${logToNone}`)).toBeUndefined();
-    expect(log(logline`${logToNone}${logToNone}`)).toBeUndefined();
+    expect(log(logline`${logToNone} ${logToNone}`)).toEqual([]);
+    expect(log(logline`${logToNone}${logToNone}`)).toEqual([]);
   });
 
-  function log(...args: unknown[]): unknown[] | undefined {
+  function log(...args: unknown[]): unknown[] {
     return logOn(undefined, ...args);
   }
 
-  function logOn(on: string | undefined, ...args: unknown[]): unknown[] | undefined {
+  function logOn(on: string | undefined, ...args: unknown[]): unknown[] {
 
-    let logged: unknown[] | undefined;
+    let logged!: unknown[];
     const logger: Partial<Logger> = {
       info(...args: unknown[]) {
         logged = args;

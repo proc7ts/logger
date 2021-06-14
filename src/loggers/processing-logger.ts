@@ -13,16 +13,10 @@ import { Logger } from '../logger';
 export function processingLogger(logger: Logger, { on }: { on?: string } = {}): HeadlessLogger {
 
   const logMethod = (log: (...args: unknown[]) => void): (...args: unknown[]) => void => (...args) => {
-    if (args.length) {
 
-      const { line } = dueLog({ on, line: args });
+    const { line } = dueLog({ on, line: args });
 
-      if (line.length) {
-        log(...line);
-      }
-    } else {
-      log();
-    }
+    log(...line);
   };
 
   return {

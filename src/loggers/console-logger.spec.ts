@@ -47,17 +47,6 @@ describe('consoleLogger', () => {
       consoleLogger.error(loggable, 1, 2, 3);
       expect(logSpy).toHaveBeenCalledWith('%s', 'replacement', 1, 2, 3);
     });
-    it('does not log empty loggable replacement', () => {
-
-      const remover: Loggable = {
-        toLog(target) {
-          target.line = [];
-        },
-      };
-
-      consoleLogger.error(1, remover, 2, 3);
-      expect(logSpy).not.toHaveBeenCalled();
-    });
   });
 
   describe('warn', () => {
