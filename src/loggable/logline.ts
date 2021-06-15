@@ -69,16 +69,17 @@ const logline$join = (result: unknown[], joins: unknown[]): void => {
  * logger.info(logline`Logged value: ${value}`); // The log line will be expanded by logger.
  * ```
  *
- * The log line is created accordingly to the following rules:
+ * The log line formatted accordingly to the following rules:
  *
- * 1. Template strings and values not separated with whitespace are joined into single string.
+ * 1. Template strings and values not separated by whitespace joined into single string.
  * 2. The values separated by whitespaces are added to the log line as is.
- * 3. Template strings are trimmed.
- * 4. Any number of subsequent whitespaces in template string is replaced with single space.
- * 5. Leading and/or trailing template string is removed if it became empty.
+ * 3. Template strings trimmed.
+ * 4. Any number of subsequent whitespaces in template strings replaced with single space.
+ * 5. Leading and/or trailing template string removed if it became empty.
  *
- * All {@link Loggable} values processes before being joined into string. They may be processed as many times as
- * requested. The joining when the {@link DueLog.on logging stage} is set to `out` or is undefined.
+ * All {@link Loggable} values processed before being joined into string. They may be processed as many times as
+ * requested. The final joining happens at the output (`'out'`) or default (`undefined`){@link DueLog.on logging
+ * stage}.
  *
  * @returns Processed log line additionally implementing {@link Loggable} interface.
  */

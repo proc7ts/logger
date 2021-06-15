@@ -14,9 +14,9 @@ export interface DueLog {
    *
    * Possible values are:
    *
-   * - `'in'` is set for logger input. I.e., for the log line passed to the logger method.
-   * - `'out'` is set by log writer. I.e., right before the message written to the log.
-   * - `undefined` when the value should be processed unconditionally.
+   * - `'in'` - _input stage_. Set for the logger input. I.e., for the log line passed to the logger method.
+   * - `'out'` - _output stage_. Set by log writer. I.e., right before the message written to the log.
+   * - `undefined` - _default stage_. When set, the value should be processed unconditionally.
    *
    * Some logger implementations may wish to use this hint for special processing. If the stage is not recognized
    * by the loggable value, then it is generally means no processing should be performed.

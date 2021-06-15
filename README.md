@@ -14,7 +14,6 @@ processing and very basic [logger implementations].
 The [@run-z/log-z] package is a reference implementation of this API. It supports structured logs, various logging
 mechanisms (e.g. log files), and customizable log formats.
 
-
 [npm-image]: https://img.shields.io/npm/v/@proc7ts/logger.svg?logo=npm
 [npm-url]: https://www.npmjs.com/package/@proc7ts/logger
 [build-status-img]: https://github.com/proc7ts/logger/workflows/Build/badge.svg
@@ -65,9 +64,9 @@ This parameter has the following properties that can be directly manipulated:
   A `toLog()` method may wish to conditionally process the message depending on the stage.
   
   Possible values are:
-  - `'in'` is set for logger input. I.e., for the log line passed to the logger method.
-  - `'out'` is set by log writer. I.e., right before the message written to the log.
-  - `undefined` when the value should be processed unconditionally.
+  - `'in'` - _input stage_. Set for the logger input. I.e., for the log line passed to the logger method.
+  - `'out'` - _output stage_. Set by log writer. I.e., right before the message written to the log.
+  - `undefined` - _default stage_. When set, the value should be processed unconditionally.
 
 - `line` - Log line to process and log.
 
@@ -81,6 +80,37 @@ This parameter has the following properties that can be directly manipulated:
 
 Every logger recognizes `Loggable` instances and processes them accordingly. To process the log line manually a
 `dueLog()` function can be used.
+
+
+Tagged Log Line
+---------------
+
+The [Logger] methods allow to log any values. The arguments passed to one of these method called _log line_. It is up to
+the logger implementation of how to format the log line.
+
+To customize the format of the log line a template string tagged by `logline` can be used:
+
+```typescript
+import { consoleLogger, logline } from '@proc7ts/logger';
+
+consoleLogger.error(logline`
+  Request: ${request.method} ${request.path}
+  Error: ${error.statusCode} (${error.statusText})
+`);
+
+// Request: GET /favicon.ico Error: 404 (Not Found)
+```
+
+The `logline`-tagged template formats the log line accordingly the following rules:
+
+1. Template strings and values not separated by whitespace joined into single string.
+2. The values separated by whitespaces are added to the log line as is.
+3. Template strings trimmed.
+4. Any number of subsequent whitespaces in template strings replaced with single space.
+5. Leading and/or trailing template string removed if it became empty.
+
+All [Loggable] values processed before being joined into string. They may be processed as many times as requested.
+The final joining happens at the output (`'out'`) or default (`undefined`) logging stage.
 
 
 Logger Implementations
