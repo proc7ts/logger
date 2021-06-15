@@ -8,6 +8,13 @@ Logger API
 [![GitHub Project][github-image]][github-url]
 [![API Documentation][api-docs-image]][API documentation]
 
+This package contains a logging API, such as [Logger] and [Loggable] interfaces along with some tools for their
+processing and very basic [logger implementations].
+
+The [@run-z/log-z] package is a reference implementation of this API. It supports structured logs, various logging
+mechanisms (e.g. log files), and customizable log formats.
+
+
 [npm-image]: https://img.shields.io/npm/v/@proc7ts/logger.svg?logo=npm
 [npm-url]: https://www.npmjs.com/package/@proc7ts/logger
 [build-status-img]: https://github.com/proc7ts/logger/workflows/Build/badge.svg
@@ -20,6 +27,7 @@ Logger API
 [github-url]: https://github.com/proc7ts/logger
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
 [API documentation]: https://proc7ts.github.io/logger/
+[@run-z/log-z]: https://www.npmjs.com/package/@run-z/log-z
 
 
 Logger
@@ -39,6 +47,7 @@ Each method accepts arbitrary number of arguments.
 
 Loggable Values
 ---------------
+[Loggable]: #loggable-values
 
 An object passes as an argument to one of the `Logger` methods can customize how it is logged by implementing a
 `toLog()` method of `Loggable` interface.
@@ -76,6 +85,7 @@ Every logger recognizes `Loggable` instances and processes them accordingly. To 
 
 Logger Implementations
 ----------------------
+[logger implementations]: #logger-implementations
 
 ### Console Logger
 
