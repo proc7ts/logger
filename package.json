@@ -4,6 +4,7 @@
   "description": "Simple logging API for Node.js and browsers",
   "keywords": [
     "log",
+    "loggable",
     "logger",
     "logging"
   ],
