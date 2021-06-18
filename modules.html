@@ -62,8 +62,17 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Namespaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-namespace"><a href="modules/duelog.html" class="tsd-kind-icon">Due<wbr>Log</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/duelog.html" class="tsd-kind-icon">Due<wbr>Log</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/loggable.html" class="tsd-kind-icon">Loggable</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/logger.html" class="tsd-kind-icon">Logger</a></li>
 							</ul>
 						</section>
@@ -74,6 +83,17 @@
 								<li class="tsd-kind-variable"><a href="modules.html#silentlogger" class="tsd-kind-icon">silent<wbr>Logger</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#duelog" class="tsd-kind-icon">due<wbr>Log</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#isloggable" class="tsd-kind-icon">is<wbr>Loggable</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#logdefer" class="tsd-kind-icon">log<wbr>Defer</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#logline" class="tsd-kind-icon">logline</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#processinglogger" class="tsd-kind-icon">processing<wbr>Logger</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#proxylogger" class="tsd-kind-icon">proxy<wbr>Logger</a></li>
+							</ul>
+						</section>
 					</div>
 				</section>
 			</section>
@@ -82,25 +102,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="consolelogger" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> console<wbr>Logger</h3>
-					<div class="tsd-signature tsd-kind-icon">console<wbr>Logger<span class="tsd-signature-symbol">:</span> <a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">console<wbr>Logger<span class="tsd-signature-symbol">:</span> <a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/master/src/console-logger.ts#L20">console-logger.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggers/console-logger.ts#L22">loggers/console-logger.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Logger instance that logs to console.</p>
 						</div>
+						<p>Processes <a href="interfaces/loggable.html">Loggable</a> values.</p>
+						<p>Ignores <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions">string substitutions</a>.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="silentlogger" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> silent<wbr>Logger</h3>
-					<div class="tsd-signature tsd-kind-icon">silent<wbr>Logger<span class="tsd-signature-symbol">:</span> <a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">silent<wbr>Logger<span class="tsd-signature-symbol">:</span> <a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/master/src/silent-logger.ts#L8">silent-logger.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggers/silent-logger.ts#L8">loggers/silent-logger.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -110,6 +132,294 @@
 					</div>
 				</section>
 			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="duelog" class="tsd-anchor"></a>
+					<h3>due<wbr>Log</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">due<wbr>Log&lt;TTarget&gt;<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span>, handlers<span class="tsd-signature-symbol">?: </span><a href="interfaces/duelog.handlers.html" class="tsd-signature-type" data-tsd-kind="Interface">Handlers</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L134">loggable/due-log.ts:134</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Processes the target log message.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>Loggable.toLog for loggable value processing rules.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="interfaces/duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Processed message type.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">TTarget</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Target (mutable) message to process.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handlers: <a href="interfaces/duelog.handlers.html" class="tsd-signature-type" data-tsd-kind="Interface">Handlers</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Custom value handlers.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h4>
+							<p>Processed <code>target</code> message.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="isloggable" class="tsd-anchor"></a>
+					<h3>is<wbr>Loggable</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Loggable<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/loggable.ts#L49">loggable/loggable.ts:49</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks whether the given value is loggable.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A value to check.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p><code>true</code> is the given <code>value</code> has a <a href="interfaces/loggable.html#tolog">toLog</a> method, or <code>false</code> otherwise.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="logdefer" class="tsd-anchor"></a>
+					<h3>log<wbr>Defer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Defer&lt;TTarget&gt;<span class="tsd-signature-symbol">(</span>toLog<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/log-defer.ts#L14">loggable/log-defer.ts:14</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a loggable value processed when the message is actually logged.</p>
+								</div>
+								<p>The value will be <a href="interfaces/loggable.html#tolog">expanded</a> at <code>out</code> <a href="interfaces/duelog.html#on">logging stage</a>.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="interfaces/duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>toLog: <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Performs additional message processing before it is logged. It will be called by
+										{@link @Loggable.toLog} method implementation at appropriate logging stage.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>this: <span class="tsd-signature-type">void</span></h5>
+														</li>
+														<li>
+															<h5>target: <span class="tsd-signature-type">TTarget</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>New loggable value.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="logline" class="tsd-anchor"></a>
+					<h3>logline</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">logline<span class="tsd-signature-symbol">(</span>strings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TemplateStringsArray</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/logline.ts#L86">loggable/logline.ts:86</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A tagged string prefix that creates a processed log line.</p>
+								</div>
+								<p>The returned log line can be used in any form:</p>
+								<pre><code class="language-typescript"><span style="color: #001080">logger</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(...</span><span style="color: #795E26">logline</span><span style="color: #A31515">`Logged value: </span><span style="color: #0000FF">${</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">); </span><span style="color: #008000">// Explicitly expand the log line.</span>
+<span style="color: #001080">logger</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(</span><span style="color: #795E26">logline</span><span style="color: #A31515">`Logged value: </span><span style="color: #0000FF">${</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">); </span><span style="color: #008000">// The log line will be expanded by logger.</span>
+</code></pre>
+								<p>The log line formatted accordingly to the following rules:</p>
+								<ol>
+									<li>Template strings and values not separated by whitespace joined into single string.</li>
+									<li>The values separated by whitespaces are added to the log line as is.</li>
+									<li>Template strings trimmed.</li>
+									<li>Any number of subsequent whitespaces in template strings replaced with single space.</li>
+									<li>Leading and/or trailing template string removed if it became empty.</li>
+								</ol>
+								<p>All <a href="interfaces/loggable.html">Loggable</a> values processed before being joined into string. They may be processed as many times as
+								requested. The final joining happens at the output (<code>&#39;out&#39;</code>) or default (<code>undefined</code>)<a href="interfaces/duelog.html#on">logging stage</a>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>strings: <span class="tsd-signature-type">TemplateStringsArray</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a></h4>
+							<p>Processed log line additionally implementing <a href="interfaces/loggable.html">Loggable</a> interface.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="processinglogger" class="tsd-anchor"></a>
+					<h3>processing<wbr>Logger</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">processing<wbr>Logger<span class="tsd-signature-symbol">(</span>logger<span class="tsd-signature-symbol">: </span><a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a>, __namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>on<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggers/processing-logger.ts#L13">loggers/processing-logger.ts:13</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a logger that processes <a href="interfaces/loggable.html">Loggable</a> values and logs with another logger.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logger: <a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A logger to log processed messages with.</p>
+									</div>
+								</li>
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>on<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>A <a href="interfaces/duelog.html#on">hint</a> indicating the logging stage. Undefined by default.</p>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a></h4>
+							<p>New headless processing logger.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="proxylogger" class="tsd-anchor"></a>
+					<h3>proxy<wbr>Logger</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">proxy<wbr>Logger<span class="tsd-signature-symbol">(</span>getLogger<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggers/proxy-logger.ts#L12">loggers/proxy-logger.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a logger that proxies logging to another one.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>getLogger: <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that returns a logger to proxy log messages to. It is called on <em>each</em> logger method
+										call.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>this: <span class="tsd-signature-type">void</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <a href="interfaces/logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a></h4>
+							<p>New headless proxy logger.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
@@ -117,10 +427,22 @@
 					<li class="current ">
 						<a href="modules.html">Exports</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/duelog.html">Due<wbr>Log</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/duelog.html" class="tsd-kind-icon">Due<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/loggable.html" class="tsd-kind-icon">Loggable</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/logger.html" class="tsd-kind-icon">Logger</a>
 					</li>
@@ -129,6 +451,24 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#silentlogger" class="tsd-kind-icon">silent<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#duelog" class="tsd-kind-icon">due<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isloggable" class="tsd-kind-icon">is<wbr>Loggable</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#logdefer" class="tsd-kind-icon">log<wbr>Defer</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#logline" class="tsd-kind-icon">logline</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#processinglogger" class="tsd-kind-icon">processing<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#proxylogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
 					</li>
 				</ul>
 			</nav>
@@ -140,6 +480,7 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 		</div>

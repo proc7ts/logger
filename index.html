@@ -63,10 +63,14 @@
 				</a>
 				<p><a href="https://www.npmjs.com/package/@proc7ts/logger"><img src="https://img.shields.io/npm/v/@proc7ts/logger.svg?logo=npm" alt="NPM"></a>
 					<a href="https://github.com/proc7ts/logger/actions?query=workflow:Build"><img src="https://github.com/proc7ts/logger/workflows/Build/badge.svg" alt="Build Status"></a>
-					<a href="https://www.codacy.com/gh/proc7ts/logger/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/logger&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/4e45ef3c83a3497fbe8f7fe3341e023c" alt="Code Quality"></a>
-					<a href="https://www.codacy.com/gh/proc7ts/logger/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/logger&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/4e45ef3c83a3497fbe8f7fe3341e023c" alt="Coverage"></a>
+					<a href="https://www.codacy.com/gh/proc7ts/logger/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/logger&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/f33e01ece3454d2a8a613536ea4228e2" alt="Code Quality"></a>
+					<a href="https://www.codacy.com/gh/proc7ts/logger/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=proc7ts/logger&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/f33e01ece3454d2a8a613536ea4228e2" alt="Coverage"></a>
 					<a href="https://github.com/proc7ts/logger"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
 				<a href="https://proc7ts.github.io/logger/"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
+				<p>This package contains a logging API, such as <a href="#logger">Logger</a> and <a href="#loggable-values">Loggable</a> interfaces along with some tools for their
+				processing and very basic <a href="#logger-implementations">logger implementations</a>.</p>
+				<p>The <a href="https://www.npmjs.com/package/@run-z/log-z">@run-z/log-z</a> package is a reference implementation of this API. It supports structured logs, various logging
+				mechanisms (e.g. log files), and customizable log formats.</p>
 				<a href="#logger" id="logger" style="color: inherit; text-decoration: none;">
 					<h2>Logger</h2>
 				</a>
@@ -76,15 +80,83 @@
 					<li><code>warn(...args)</code> - Logs warning.</li>
 					<li><code>info(...args)</code> - Logs informational message.</li>
 					<li><code>debug(...args)</code> - Logs debug message.</li>
+					<li><code>trace(...args)</code> - Logs tracing message. This may lead to outputting of stack trace.</li>
 				</ul>
 				<p>Each method accepts arbitrary number of arguments.</p>
+				<a href="#loggable-values" id="loggable-values" style="color: inherit; text-decoration: none;">
+					<h2>Loggable Values</h2>
+				</a>
+				<p>An object passes as an argument to one of the <code>Logger</code> methods can customize how it is logged by implementing a
+				<code>toLog()</code> method of <code>Loggable</code> interface.</p>
+				<p>In the simples case, the <code>toLog()</code> method may return another value that will be logged instead of the original one.</p>
+				<p>It may also return an array of values that will be inserted to the log line instead of original value. This may be an
+				empty array to completely remove the value from the log line.</p>
+				<p>A more advanced processing is possible by directly manipulating a <code>DueLog</code> parameter passed to the <code>toLog()</code> method.
+				This parameter has the following properties that can be directly manipulated:</p>
+				<ul>
+					<li><p><code>on</code> - A hint indicating the logging stage.</p>
+						<p>A <code>toLog()</code> method may wish to conditionally process the message depending on the stage.</p>
+						<p>Possible values are:</p>
+						<ul>
+							<li><code>&#39;in&#39;</code> - <em>input stage</em>. Set for the logger input. I.e., for the log line passed to the logger method.</li>
+							<li><code>&#39;out&#39;</code> - <em>output stage</em>. Set by log writer. I.e., right before the message written to the log.</li>
+							<li><code>undefined</code> - <em>default stage</em>. When set, the value should be processed unconditionally.</li>
+						</ul>
+					</li>
+					<li><p><code>line</code> - Log line to process and log.</p>
+						<p>Can be modified or replaced to change the message to log.</p>
+					</li>
+					<li><p><code>index</code> - An index of currently processed element of the log <code>line</code>.</p>
+						<p>May be equal to the log line length to indicate additional value processing that may affect the message to log.</p>
+						<p>Can be modified to specify the next element to process.</p>
+					</li>
+				</ul>
+				<p>Every logger recognizes <code>Loggable</code> instances and processes them accordingly. To process the log line manually a
+				<code>dueLog()</code> function can be used.</p>
+				<a href="#tagged-log-line" id="tagged-log-line" style="color: inherit; text-decoration: none;">
+					<h2>Tagged Log Line</h2>
+				</a>
+				<p>The <a href="#logger">Logger</a> methods allow to log any values. The arguments passed to one of these method called <em>log line</em>. It is up to
+				the logger implementation of how to format the log line.</p>
+				<p>To customize the format of the log line a template string tagged by <code>logline</code> can be used:</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">consoleLogger</span><span style="color: #000000">, </span><span style="color: #001080">logline</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@proc7ts/logger&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #001080">consoleLogger</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #795E26">logline</span><span style="color: #A31515">`</span>
+<span style="color: #A31515">  Request: </span><span style="color: #0000FF">${</span><span style="color: #001080">request</span><span style="color: #000000FF">.</span><span style="color: #001080">method</span><span style="color: #0000FF">}</span><span style="color: #A31515"> </span><span style="color: #0000FF">${</span><span style="color: #001080">request</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span>
+<span style="color: #A31515">  Error: </span><span style="color: #0000FF">${</span><span style="color: #001080">error</span><span style="color: #000000FF">.</span><span style="color: #001080">statusCode</span><span style="color: #0000FF">}</span><span style="color: #A31515"> (</span><span style="color: #0000FF">${</span><span style="color: #001080">error</span><span style="color: #000000FF">.</span><span style="color: #001080">statusText</span><span style="color: #0000FF">}</span><span style="color: #A31515">)</span>
+<span style="color: #A31515">`</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// Request: GET /favicon.ico Error: 404 (Not Found)</span>
+</code></pre>
+				<p>The <code>logline</code>-tagged template formats the log line accordingly the following rules:</p>
+				<ol>
+					<li>Template strings and values not separated by whitespace joined into single string.</li>
+					<li>The values separated by whitespaces are added to the log line as is.</li>
+					<li>Template strings trimmed.</li>
+					<li>Any number of subsequent whitespaces in template strings replaced with single space.</li>
+					<li>Leading and/or trailing template string removed if it became empty.</li>
+				</ol>
+				<p>All <a href="#loggable-values">Loggable</a> values processed before being joined into string. They may be processed as many times as requested.
+				The final joining happens at the output (<code>&#39;out&#39;</code>) or default (<code>undefined</code>) logging stage.</p>
+				<a href="#logger-implementations" id="logger-implementations" style="color: inherit; text-decoration: none;">
+					<h2>Logger Implementations</h2>
+				</a>
 				<a href="#console-logger" id="console-logger" style="color: inherit; text-decoration: none;">
-					<h2>Console Logger</h2>
+					<h3>Console Logger</h3>
 				</a>
 				<p><code>consoleLogger</code> is a <a href="#logger">Logger</a> instance that logs to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console">console</a>.</p>
-				<p>Note that the first parameter isn&#39;t treated in any special way. I.e. it is not a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions">format string</a>.</p>
+				<p>Note that the first parameter isn&#39;t treated in any special way. I.e., it is not a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions">format string</a>.</p>
+				<a href="#processing-logger" id="processing-logger" style="color: inherit; text-decoration: none;">
+					<h3>Processing Logger</h3>
+				</a>
+				<p><code>processingLogger()</code> function creates a logger that processes <code>Loggable</code> values and logs with another logger.</p>
+				<a href="#proxy-logger" id="proxy-logger" style="color: inherit; text-decoration: none;">
+					<h3>Proxy Logger</h3>
+				</a>
+				<p><code>proxyLogger()</code> function creates a logger that proxies logging to another one.</p>
+				<p>The target logger can change dynamically.</p>
 				<a href="#silent-logger" id="silent-logger" style="color: inherit; text-decoration: none;">
-					<h2>Silent Logger</h2>
+					<h3>Silent Logger</h3>
 				</a>
 				<p><code>silentLogger</code> is a <a href="#logger">Logger</a> instance the never logs anything.</p>
 			</div>
@@ -95,10 +167,22 @@
 					<li class=" ">
 						<a href="modules.html">Exports</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/duelog.html">Due<wbr>Log</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/duelog.html" class="tsd-kind-icon">Due<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/loggable.html" class="tsd-kind-icon">Loggable</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/logger.html" class="tsd-kind-icon">Logger</a>
 					</li>
@@ -107,6 +191,24 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#silentlogger" class="tsd-kind-icon">silent<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#duelog" class="tsd-kind-icon">due<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isloggable" class="tsd-kind-icon">is<wbr>Loggable</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#logdefer" class="tsd-kind-icon">log<wbr>Defer</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#logline" class="tsd-kind-icon">logline</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#processinglogger" class="tsd-kind-icon">processing<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#proxylogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
 					</li>
 				</ul>
 			</nav>
@@ -118,6 +220,7 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 		</div>

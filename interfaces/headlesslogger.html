@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Logger | Amend</title>
+	<title>HeadlessLogger | Amend</title>
 	<meta name="description" content="Documentation for Amend">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">Amend</a>
 				</li>
 				<li>
-					<a href="logger.html">Logger</a>
+					<a href="headlesslogger.html">HeadlessLogger</a>
 				</li>
 			</ul>
-			<h1>Interface Logger</h1>
+			<h1>Interface HeadlessLogger</h1>
 		</div>
 	</div>
 </header>
@@ -68,18 +68,20 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Basic logger interface.</p>
+						<p>Headless logger interface.</p>
 					</div>
+					<p>In contrast to <a href="logger.html">basis logger</a>, the methods of this one do not require a <code>this</code> context, and can be used
+					as functions.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Logger</span>
+						<a href="logger.html" class="tsd-signature-type" data-tsd-kind="Interface">Logger</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="headlesslogger.html" class="tsd-signature-type" data-tsd-kind="Interface">HeadlessLogger</a>
+								<span class="target">HeadlessLogger</span>
 							</li>
 						</ul>
 					</li>
@@ -92,11 +94,11 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="logger.html#debug" class="tsd-kind-icon">debug</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="logger.html#error" class="tsd-kind-icon">error</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="logger.html#info" class="tsd-kind-icon">info</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="logger.html#trace" class="tsd-kind-icon">trace</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="logger.html#warn" class="tsd-kind-icon">warn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="headlesslogger.html#debug" class="tsd-kind-icon">debug</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="headlesslogger.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="headlesslogger.html#info" class="tsd-kind-icon">info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="headlesslogger.html#trace" class="tsd-kind-icon">trace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="headlesslogger.html#warn" class="tsd-kind-icon">warn</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,17 +106,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="debug" class="tsd-anchor"></a>
 					<h3>debug</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="logger.html">Logger</a>.<a href="logger.html#debug">debug</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/logger.ts#L32">logger.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/headless-logger.ts#L17">headless-logger.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -126,26 +129,24 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Arbitrary arguments to log.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="error" class="tsd-anchor"></a>
 					<h3>error</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="logger.html">Logger</a>.<a href="logger.html#error">error</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/logger.ts#L11">logger.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/headless-logger.ts#L11">headless-logger.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,26 +158,24 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Arbitrary arguments to log.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="info" class="tsd-anchor"></a>
 					<h3>info</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="logger.html">Logger</a>.<a href="logger.html#info">info</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/logger.ts#L25">logger.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/headless-logger.ts#L15">headless-logger.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -188,26 +187,24 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Arbitrary arguments to log.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="trace" class="tsd-anchor"></a>
 					<h3>trace</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">trace<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="logger.html">Logger</a>.<a href="logger.html#trace">trace</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/logger.ts#L41">logger.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/headless-logger.ts#L19">headless-logger.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -220,26 +217,24 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Arbitrary arguments to log.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="warn" class="tsd-anchor"></a>
 					<h3>warn</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">warn<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="logger.html">Logger</a>.<a href="logger.html#warn">warn</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/logger.ts#L18">logger.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/headless-logger.ts#L13">headless-logger.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -251,9 +246,6 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Arbitrary arguments to log.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -275,36 +267,36 @@
 					<li class=" tsd-kind-interface">
 						<a href="duelog.html" class="tsd-kind-icon">Due<wbr>Log</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="loggable.html" class="tsd-kind-icon">Loggable</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="logger.html" class="tsd-kind-icon">Logger</a>
+						<a href="headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="logger.html#debug" class="tsd-kind-icon">debug</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="headlesslogger.html#debug" class="tsd-kind-icon">debug</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="logger.html#error" class="tsd-kind-icon">error</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="headlesslogger.html#error" class="tsd-kind-icon">error</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="logger.html#info" class="tsd-kind-icon">info</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="headlesslogger.html#info" class="tsd-kind-icon">info</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="logger.html#trace" class="tsd-kind-icon">trace</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="headlesslogger.html#trace" class="tsd-kind-icon">trace</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="logger.html#warn" class="tsd-kind-icon">warn</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="headlesslogger.html#warn" class="tsd-kind-icon">warn</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="loggable.html" class="tsd-kind-icon">Loggable</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="logger.html" class="tsd-kind-icon">Logger</a>
+					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../modules.html#consolelogger" class="tsd-kind-icon">console<wbr>Logger</a>
 					</li>
