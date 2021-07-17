@@ -55,7 +55,7 @@
 					<a href="../modules.html">Amend</a>
 				</li>
 				<li>
-					<a href="loggable.html">Loggable</a>
+					<a href="Loggable.html">Loggable</a>
 				</li>
 			</ul>
 			<h1>Interface Loggable&lt;TTarget&gt;</h1>
@@ -76,7 +76,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
+						<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Processed message type.</p>
@@ -100,7 +100,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="loggable.html#tolog" class="tsd-kind-icon">to<wbr>Log</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr>Log</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,33 +109,33 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="tolog" class="tsd-anchor"></a>
+					<a name="toLog" class="tsd-anchor"></a>
 					<h3>to<wbr>Log</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Log<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Log<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Performs additional message processing before it is logged.</p>
 								</div>
-								<p>This method is called for each element of the <a href="duelog.html#line">logged message line</a> in order. It may wish to
+								<p>This method is called for each element of the <a href="DueLog.html#line">logged message line</a> in order. It may wish to
 								change the logged message either by modifying it, or by returning a loggable representation of the value.</p>
 								<p>The method call results interpreted as following:</p>
 								<ol>
-									<li><p>If the method replaced the <a href="duelog.html#line">log line</a> or updated the next element&#39;s <a href="duelog.html#index">index</a>, then the returned value is ignored, and the new log line processing continues from the new element
+									<li><p>If the method replaced the <a href="DueLog.html#line">log line</a> or updated the next element&#39;s <a href="DueLog.html#index">index</a>, then the returned value is ignored, and the new log line processing continues from the new element
 										index.</p>
 									</li>
 									<li><p>If the returned value is <code>undefined</code> or the same as <code>this</code>, then the log line processing continues from the next
 										element.</p>
 									</li>
-									<li><p>If the returned value is <a href="loggable.html">Loggable</a>, it replaces the current element, and the log line processing
+									<li><p>If the returned value is <a href="Loggable.html">Loggable</a>, it replaces the current element, and the log line processing
 										continues from the same element index. This allows recurrent processing.</p>
 									</li>
 									<li><p>If the returned value is an array, then current element is removed and all elements of the returned array are
@@ -148,9 +148,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
+									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Log message to process containing this loggable value at the specified <a href="duelog.html#index">index</a>.</p>
+										<p>Log message to process containing this loggable value at the specified <a href="DueLog.html#index">index</a>.</p>
 									</div>
 								</li>
 							</ul>
@@ -173,49 +173,52 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
-						<a href="duelog.html" class="tsd-kind-icon">Due<wbr>Log</a>
+						<a href="DueLog.html" class="tsd-kind-icon">Due<wbr>Log</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
+						<a href="HeadlessLogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="loggable.html" class="tsd-kind-icon">Loggable</a>
+						<a href="Loggable.html" class="tsd-kind-icon">Loggable</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="loggable.html#tolog" class="tsd-kind-icon">to<wbr>Log</a>
+								<a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr>Log</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="logger.html" class="tsd-kind-icon">Logger</a>
+						<a href="Logger.html" class="tsd-kind-icon">Logger</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../modules.html#consolelogger" class="tsd-kind-icon">console<wbr>Logger</a>
+						<a href="../modules.html#Logger" class="tsd-kind-icon">Logger</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../modules.html#silentlogger" class="tsd-kind-icon">silent<wbr>Logger</a>
+						<a href="../modules.html#consoleLogger" class="tsd-kind-icon">console<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../modules.html#silentLogger" class="tsd-kind-icon">silent<wbr>Logger</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#duelog" class="tsd-kind-icon">due<wbr>Log</a>
+						<a href="../modules.html#dueLog" class="tsd-kind-icon">due<wbr>Log</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#isloggable" class="tsd-kind-icon">is<wbr>Loggable</a>
+						<a href="../modules.html#isLoggable" class="tsd-kind-icon">is<wbr>Loggable</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#logdefer" class="tsd-kind-icon">log<wbr>Defer</a>
+						<a href="../modules.html#logDefer" class="tsd-kind-icon">log<wbr>Defer</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#logline" class="tsd-kind-icon">logline</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#processinglogger" class="tsd-kind-icon">processing<wbr>Logger</a>
+						<a href="../modules.html#processingLogger" class="tsd-kind-icon">processing<wbr>Logger</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../modules.html#proxylogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
+						<a href="../modules.html#proxyLogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
 					</li>
 				</ul>
 			</nav>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DueLog | Amend</title>
+	<title>Target | Amend</title>
 	<meta name="description" content="Documentation for Amend">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,13 @@
 					<a href="../modules.html">Amend</a>
 				</li>
 				<li>
-					<a href="duelog.html">DueLog</a>
+					<a href="../modules/DueLog.html">DueLog</a>
+				</li>
+				<li>
+					<a href="DueLog.Target.html">Target</a>
 				</li>
 			</ul>
-			<h1>Interface DueLog</h1>
+			<h1>Interface Target</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +71,17 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A message about to be logged.</p>
+						<p>A message to process before being logged.</p>
 					</div>
-					<p>Such message can be additionally <a href="loggable.html#tolog">processed</a> before it is written to the log.</p>
+					<p>Has the same structure as <a href="DueLog.html">DueLog</a> but some properties may be initially omitted. They will be fulfilled
+					by <a href="../modules.html#dueLog">dueLog</a> before returned.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DueLog</span>
+						<span class="target">Target</span>
 					</li>
 				</ul>
 			</section>
@@ -88,9 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="duelog.html#index" class="tsd-kind-icon">index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="duelog.html#line" class="tsd-kind-icon">line</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="duelog.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="DueLog.Target.html#index" class="tsd-kind-icon">index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="DueLog.Target.html#line" class="tsd-kind-icon">line</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="DueLog.Target.html#on" class="tsd-kind-icon">on</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,18 +104,25 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="index" class="tsd-anchor"></a>
-					<h3>index</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> index</h3>
 					<div class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L38">loggable/due-log.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/due-log.ts#L78">loggable/due-log.ts:78</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An index of currently processed element of the log <a href="duelog.html#line">line</a>.</p>
+							<p>An index of the first element of the log <a href="DueLog.Target.html#line">line</a> to process.</p>
 						</div>
-						<p>Can be modified to specify the next element to process.</p>
+						<p>Defaults to <code>0</code>. When set to negative value, reset to <code>0</code>. When set to the value greater than the length of the
+						log line, reset to the log line length.</p>
+						<p>After processing will be set to the length of the final log line.</p>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>DueLog.index</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -120,14 +131,19 @@
 					<div class="tsd-signature tsd-kind-icon">line<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L31">loggable/due-log.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/due-log.ts#L66">loggable/due-log.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Log line to process and log.</p>
+							<p>Log line to process.</p>
 						</div>
-						<p>Can be modified or replaced to change the message to log.</p>
+						<p>After processing will be updated to the final log line.</p>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>DueLog.line</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -136,22 +152,18 @@
 					<div class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L24">loggable/due-log.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/due-log.ts#L57">loggable/due-log.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>A hint indicating the logging stage.</p>
 						</div>
-						<p>A <a href="loggable.html#tolog">log processor</a> may wish to conditionally process the message depending on the stage.</p>
-						<p>Possible values are:</p>
-						<ul>
-							<li><code>&#39;in&#39;</code> - <em>input stage</em>. Set for the logger input. I.e., for the log line passed to the logger method.</li>
-							<li><code>&#39;out&#39;</code> - <em>output stage</em>. Set by log writer. I.e., right before the message written to the log.</li>
-							<li><code>undefined</code> - <em>default stage</em>. When set, the value should be processed unconditionally.</li>
-						</ul>
-						<p>Some logger implementations may wish to use this hint for special processing. If the stage is not recognized
-						by the loggable value, then it is generally means no processing should be performed.</p>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>DueLog.on</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -162,61 +174,34 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
+					<li class="current tsd-kind-namespace">
+						<a href="../modules/DueLog.html">Due<wbr>Log</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="DueLog.Handlers.html" class="tsd-kind-icon">Handlers</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="duelog.html" class="tsd-kind-icon">Due<wbr>Log</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="DueLog.Target.html" class="tsd-kind-icon">Target</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="duelog.html#index" class="tsd-kind-icon">index</a>
+								<a href="DueLog.Target.html#index" class="tsd-kind-icon">index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="duelog.html#line" class="tsd-kind-icon">line</a>
+								<a href="DueLog.Target.html#line" class="tsd-kind-icon">line</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="duelog.html#on" class="tsd-kind-icon">on</a>
+								<a href="DueLog.Target.html#on" class="tsd-kind-icon">on</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="headlesslogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="loggable.html" class="tsd-kind-icon">Loggable</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="logger.html" class="tsd-kind-icon">Logger</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#consolelogger" class="tsd-kind-icon">console<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#silentlogger" class="tsd-kind-icon">silent<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#duelog" class="tsd-kind-icon">due<wbr>Log</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#isloggable" class="tsd-kind-icon">is<wbr>Loggable</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#logdefer" class="tsd-kind-icon">log<wbr>Defer</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#logline" class="tsd-kind-icon">logline</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#processinglogger" class="tsd-kind-icon">processing<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#proxylogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

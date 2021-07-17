@@ -55,10 +55,10 @@
 					<a href="../modules.html">Amend</a>
 				</li>
 				<li>
-					<a href="../modules/duelog.html">DueLog</a>
+					<a href="../modules/DueLog.html">DueLog</a>
 				</li>
 				<li>
-					<a href="duelog.handlers.html">Handlers</a>
+					<a href="DueLog.Handlers.html">Handlers</a>
 				</li>
 			</ul>
 			<h1>Interface Handlers&lt;TTarget&gt;</h1>
@@ -79,7 +79,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
+						<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Processed message type.</p>
@@ -103,8 +103,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="duelog.handlers.html#onloggable" class="tsd-kind-icon">on<wbr>Loggable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="duelog.handlers.html#onraw" class="tsd-kind-icon">on<wbr>Raw</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="DueLog.Handlers.html#onLoggable" class="tsd-kind-icon">on<wbr>Loggable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="DueLog.Handlers.html#onRaw" class="tsd-kind-icon">on<wbr>Raw</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,35 +113,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="onloggable" class="tsd-anchor"></a>
+					<a name="onLoggable" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Loggable</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Loggable<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a>, value<span class="tsd-signature-symbol">: </span><a href="loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Loggable<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a>, value<span class="tsd-signature-symbol">: </span><a href="Loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L117">loggable/due-log.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/due-log.ts#L117">loggable/due-log.ts:117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Handles <a href="loggable.html">Loggable</a> value.</p>
+									<p>Handles <a href="Loggable.html">Loggable</a> value.</p>
 								</div>
-								<p>The handler execution results treated similarly to <a href="loggable.html#tolog">Loggable.toLog</a>.</p>
-								<p>By default, calls <a href="loggable.html#tolog">Loggable.toLog</a> and returns its value.</p>
+								<p>The handler execution results treated similarly to <a href="Loggable.html#toLog">Loggable.toLog</a>.</p>
+								<p>By default, calls <a href="Loggable.html#toLog">Loggable.toLog</a> and returns its value.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
+									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Target (mutable) message to process.</p>
 									</div>
 								</li>
 								<li>
-									<h5>value: <a href="loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="duelog.target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>value: <a href="Loggable.html" class="tsd-signature-type" data-tsd-kind="Interface">Loggable</a><span class="tsd-signature-symbol">&lt;</span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The loggable value to process.</p>
 									</div>
@@ -154,29 +154,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="onraw" class="tsd-anchor"></a>
+					<a name="onRaw" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Raw</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Raw<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Raw<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/cef94b5/src/loggable/due-log.ts#L102">loggable/due-log.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/3c85acb/src/loggable/due-log.ts#L102">loggable/due-log.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Handles raw (i.e. non-<a href="loggable.html">Loggable</a>) value.</p>
+									<p>Handles raw (i.e. non-<a href="Loggable.html">Loggable</a>) value.</p>
 								</div>
-								<p>The handler execution results treated similarly to <a href="loggable.html#tolog">Loggable.toLog</a>.</p>
+								<p>The handler execution results treated similarly to <a href="Loggable.html#toLog">Loggable.toLog</a>.</p>
 								<p>Does nothing by default.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="duelog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
+									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Target (mutable) message to process.</p>
 									</div>
@@ -203,7 +203,7 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-namespace">
-						<a href="../modules/duelog.html">Due<wbr>Log</a>
+						<a href="../modules/DueLog.html">Due<wbr>Log</a>
 					</li>
 				</ul>
 			</nav>
@@ -212,20 +212,20 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
-						<a href="duelog.handlers.html" class="tsd-kind-icon">Handlers</a>
+						<a href="DueLog.Handlers.html" class="tsd-kind-icon">Handlers</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="duelog.handlers.html#onloggable" class="tsd-kind-icon">on<wbr>Loggable</a>
+								<a href="DueLog.Handlers.html#onLoggable" class="tsd-kind-icon">on<wbr>Loggable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="duelog.handlers.html#onraw" class="tsd-kind-icon">on<wbr>Raw</a>
+								<a href="DueLog.Handlers.html#onRaw" class="tsd-kind-icon">on<wbr>Raw</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="duelog.target.html" class="tsd-kind-icon">Target</a>
+						<a href="DueLog.Target.html" class="tsd-kind-icon">Target</a>
 					</li>
 				</ul>
 			</nav>
