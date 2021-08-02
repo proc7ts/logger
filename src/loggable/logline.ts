@@ -12,51 +12,56 @@ const logline$append = (result: unknown[], str: string): void => {
   }
 };
 const logline$join = (result: unknown[], joins: unknown[]): void => {
-  if (joins.length) {
-
-    const loggable: Loggable = {
-      toLog(target: DueLog): string | void {
-
-        // Remember the containing log line and position.
-        const { on = 'out', line, index } = target;
-
-        // The loggable to apply after joining.
-        const endJoin: Loggable = {
-          toLog(target) {
-            // Read the join results.
-            joins = target.line.slice(0, -1); // The last element is this loggable.
-
-            if (!joins.length) {
-              // Nothing left to join.
-              line.splice(index, 1);
-              // Restore containing log line with `logline` removed.
-              target.line = line;
-              // Go on from the same position.
-              target.index = index;
-
-              return;
-            }
-
-            if (on === 'out') {
-              // Finally join into a string.
-              line[index] = joins.join('');
-            }
-
-            // Restore containing log line.
-            target.line = line;
-            // Go on from the next element to avoid immediate re-processing.
-            target.index = index + 1;
-          },
-        };
-
-        // Initiate joining by replacing a log line to process.
-        target.line = [...joins, /* resumes normal processing */ endJoin];
-        target.index = 0;
-      },
-    };
-
-    result.push(loggable);
+  if (!joins.length) {
+    return;
   }
+  if (joins.length === 1) {
+    result.push(joins[0]);
+    return;
+  }
+
+  const loggable: Loggable = {
+    toLog(target: DueLog): string | void {
+
+      // Remember the containing log line and position.
+      const { on = 'out', line, index } = target;
+
+      // The loggable to apply after joining.
+      const endJoin: Loggable = {
+        toLog(target) {
+          // Read the join results.
+          joins = target.line.slice(0, -1); // The last element is this loggable.
+
+          if (!joins.length) {
+            // Nothing left to join.
+            line.splice(index, 1);
+            // Restore containing log line with `logline` removed.
+            target.line = line;
+            // Go on from the same position.
+            target.index = index;
+
+            return;
+          }
+
+          if (on === 'out') {
+            // Finally join into a string.
+            line[index] = joins.join('');
+          }
+
+          // Restore containing log line.
+          target.line = line;
+          // Go on from the next element to avoid immediate re-processing.
+          target.index = index + 1;
+        },
+      };
+
+      // Initiate joining by replacing a log line to process.
+      target.line = [...joins, /* resumes normal processing */ endJoin];
+      target.index = 0;
+    },
+  };
+
+  result.push(loggable);
 };
 
 /**

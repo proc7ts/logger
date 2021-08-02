@@ -10,6 +10,18 @@ describe('logline', () => {
     toLog: () => [],
   };
 
+  it('reports single value as is', () => {
+    expect(log(logline`${1}`)).toEqual([1]);
+  });
+  it('reports leading value as is', () => {
+    expect(log(logline`${1} suffix`)).toEqual([1, 'suffix']);
+  });
+  it('reports trailing value as is', () => {
+    expect(log(logline`prefix ${1}`)).toEqual(['prefix', 1]);
+  });
+  it('reports separated values as is', () => {
+    expect(log(logline`${1} ${2} ${3} ${4}`)).toEqual([1, 2, 3, 4]);
+  });
   it('joins non-separate values', () => {
     expect(log(logline`1${2}3${4}5`)).toEqual(['12345']);
   });
