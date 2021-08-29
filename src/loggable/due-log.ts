@@ -21,7 +21,7 @@ export interface DueLog {
    * Some logger implementations may wish to use this hint for special processing. If the stage is not recognized
    * by the loggable value, then it is generally means no processing should be performed.
    */
-  on?: string;
+  on?: string | undefined;
 
   /**
    * Log line to process and log.
@@ -54,7 +54,7 @@ export namespace DueLog {
      *
      * @see DueLog.on
      */
-    on?: string;
+    on?: string | undefined;
 
     /**
      * Log line to process.
@@ -75,7 +75,7 @@ export namespace DueLog {
      *
      * @see DueLog.index
      */
-    index?: number;
+    index?: number | undefined;
 
   }
 
