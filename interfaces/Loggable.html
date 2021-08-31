@@ -118,7 +118,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/a119fe4/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/a81183b/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -129,8 +129,9 @@
 								change the logged message either by modifying it, or by returning a loggable representation of the value.</p>
 								<p>The method call results interpreted as following:</p>
 								<ol>
-									<li><p>If the method replaced the <a href="DueLog.html#line">log line</a> or updated the next element&#39;s <a href="DueLog.html#index">index</a>, then the returned value is ignored, and the new log line processing continues from the new element
-										index.</p>
+									<li><p>If the method replaced the <a href="DueLog.html#line">log line</a> or currently processed element, or updated the next
+											element&#39;s <a href="DueLog.html#index">index</a>, then the returned value is ignored, and the new log line processing
+										continues from the new element index.</p>
 									</li>
 									<li><p>If the returned value is <code>undefined</code> or the same as <code>this</code>, then the log line processing continues from the next
 										element.</p>
