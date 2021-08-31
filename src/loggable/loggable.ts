@@ -15,9 +15,9 @@ export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
    *
    * The method call results interpreted as following:
    *
-   * 1. If the method replaced the {@link DueLog.line log line} or updated the next element's {@link DueLog.index
-    *   index}, then the returned value is ignored, and the new log line processing continues from the new element
-   *    index.
+   * 1. If the method replaced the {@link DueLog.line log line} or currently processed element, or updated the next
+   *    element's {@link DueLog.index index}, then the returned value is ignored, and the new log line processing
+   *    continues from the new element index.
    *
    * 2. If the returned value is `undefined` or the same as `this`, then the log line processing continues from the next
    *    element.

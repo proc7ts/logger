@@ -36,6 +36,16 @@ describe('dueLog', () => {
   it('does not alter raw value', () => {
     expect(dueLog({ line: [1, 2, 'test'] })).toEqual({ line: [1, 2, 'test'], index: 3 });
   });
+  it('handles log line element replacement', () => {
+
+    const toLog: Loggable = {
+      toLog(target) {
+        target.line[target.index] = logAsTest;
+      },
+    };
+
+    expect(dueLog({ line: [1, toLog, 2] })).toEqual({ line: [1, 'test', 2], index: 3 });
+  });
   it('replaces log line element by loggable representation', () => {
     expect(dueLog({ line: [1, logAsTest, 2] })).toEqual({ line: [1, 'test', 2], index: 3 });
   });

@@ -160,7 +160,7 @@ export function dueLog<TTarget extends DueLog.Target>(
 
     if (due.index !== index) {
       due.index = Math.max(due.index, 0);
-    } else if (due.line === line) {
+    } else if (due.line === line && line[index] === value) {
       if (toLog === undefined || toLog === value) {
         ++due.index;
       } else if (!isLoggable(toLog) && Array.isArray(toLog)) {
