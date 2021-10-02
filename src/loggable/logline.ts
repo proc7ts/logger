@@ -17,6 +17,7 @@ const logline$join = (result: unknown[], joins: unknown[]): void => {
   }
   if (joins.length === 1) {
     result.push(joins[0]);
+
     return;
   }
 
