@@ -1,246 +1,31 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Loggable | Logger</title>
-	<meta name="description" content="Documentation for Logger">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/main.css">
-	<script async src="../assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="../index.html" class="title">Logger</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="../modules.html">Logger</a>
-				</li>
-				<li>
-					<a href="Loggable.html">Loggable</a>
-				</li>
-			</ul>
-			<h1>Interface Loggable&lt;TTarget&gt;</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A value that may be logged in a custom way.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>TTarget<span class="tsd-signature-symbol">: </span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Processed message type.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">Loggable</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr>Log</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="toLog" class="tsd-anchor"></a>
-					<h3>to<wbr>Log</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Log<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/proc7ts/logger/blob/a81183b/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Performs additional message processing before it is logged.</p>
-								</div>
-								<p>This method is called for each element of the <a href="DueLog.html#line">logged message line</a> in order. It may wish to
-								change the logged message either by modifying it, or by returning a loggable representation of the value.</p>
-								<p>The method call results interpreted as following:</p>
-								<ol>
-									<li><p>If the method replaced the <a href="DueLog.html#line">log line</a> or currently processed element, or updated the next
-											element&#39;s <a href="DueLog.html#index">index</a>, then the returned value is ignored, and the new log line processing
-										continues from the new element index.</p>
-									</li>
-									<li><p>If the returned value is <code>undefined</code> or the same as <code>this</code>, then the log line processing continues from the next
-										element.</p>
-									</li>
-									<li><p>If the returned value is <a href="Loggable.html">Loggable</a>, it replaces the current element, and the log line processing
-										continues from the same element index. This allows recurrent processing.</p>
-									</li>
-									<li><p>If the returned value is an array, then current element is removed and all elements of the returned array are
-											inserted at the same position. The log line processing continues from the same element index. This allows
-											recurrent processing. This also makes it possible to remove the value from the log line by returning an empty
-										array.</p>
-									</li>
-								</ol>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>target: <span class="tsd-signature-type">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Log message to process containing this loggable value at the specified <a href="DueLog.html#index">index</a>.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
-							<p>Either new loggable value representation, or nothing or <code>this</code> value itself to not replace its loggable
-							representation.</p>
-						</li>
-					</ul>
-				</section>
-			</section>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="../modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface">
-						<a href="DueLog.html" class="tsd-kind-icon">Due<wbr>Log</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="HeadlessLogger.html" class="tsd-kind-icon">Headless<wbr>Logger</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="Loggable.html" class="tsd-kind-icon">Loggable</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr>Log</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="Logger.html" class="tsd-kind-icon">Logger</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#Logger" class="tsd-kind-icon">Logger</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#consoleLogger" class="tsd-kind-icon">console<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#silentLogger" class="tsd-kind-icon">silent<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#dueLog" class="tsd-kind-icon">due<wbr>Log</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#isLoggable" class="tsd-kind-icon">is<wbr>Loggable</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#logDefer" class="tsd-kind-icon">log<wbr>Defer</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#logline" class="tsd-kind-icon">logline</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#processingLogger" class="tsd-kind-icon">processing<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#proxyLogger" class="tsd-kind-icon">proxy<wbr>Logger</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="../assets/js/main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Loggable | Logger</title><meta name="description" content="Documentation for Logger"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base=".."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">Logger</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><ul class="tsd-breadcrumb"><li><a href="../modules.html">Logger</a></li><li><a href="Loggable.html">Loggable</a></li></ul><h1>Interface Loggable&lt;TTarget&gt;</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A value that may be logged in a custom way.</p>
+</div></div></section><section class="tsd-panel tsd-type-parameters"><h3>Type parameters</h3><ul class="tsd-type-parameters"><li><h4>TTarget<span class="tsd-signature-symbol">: </span><a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a> = <a href="DueLog.Target.html" class="tsd-signature-type" data-tsd-kind="Interface">Target</a></h4><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Processed message type.</p>
+</div></div></li></ul></section><section class="tsd-panel tsd-hierarchy"><h3>Hierarchy</h3><ul class="tsd-hierarchy"><li><span class="target">Loggable</span></li></ul></section><section class="tsd-panel-group tsd-index-group"><h2>Index</h2><section class="tsd-panel tsd-index-panel"><div class="tsd-index-content"><section class="tsd-index-section "><h3>Methods</h3><ul class="tsd-index-list"><li class="tsd-kind-method tsd-parent-kind-interface"><a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr/>Log</a></li></ul></section></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Methods</h2><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a name="toLog" class="tsd-anchor"></a><h3>to<wbr/>Log</h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface"><li class="tsd-signature tsd-kind-icon">to<wbr/>Log<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/proc7ts/logger/blob/20299bb/src/loggable/loggable.ts#L38">loggable/loggable.ts:38</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Performs additional message processing before it is logged.</p>
+</div><div><p>This method is called for each element of the <a href="DueLog.html#line">logged message line</a> in order. It may wish to
+change the logged message either by modifying it, or by returning a loggable representation of the value.</p>
+<p>The method call results interpreted as following:</p>
+<ol>
+<li><p>If the method replaced the <a href="DueLog.html#line">log line</a> or currently processed element, or updated the next
+element&#39;s <a href="DueLog.html#index">index</a>, then the returned value is ignored, and the new log line processing
+continues from the new element index.</p>
+</li>
+<li><p>If the returned value is <code>undefined</code> or the same as <code>this</code>, then the log line processing continues from the next
+element.</p>
+</li>
+<li><p>If the returned value is <a href="Loggable.html">Loggable</a>, it replaces the current element, and the log line processing
+continues from the same element index. This allows recurrent processing.</p>
+</li>
+<li><p>If the returned value is an array, then current element is removed and all elements of the returned array are
+inserted at the same position. The log line processing continues from the same element index. This allows
+recurrent processing. This also makes it possible to remove the value from the log line by returning an empty
+array.</p>
+</li>
+</ol>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>target: <span class="tsd-signature-type" data-tsd-kind="Type parameter">TTarget</span><span class="tsd-signature-symbol"> &amp; </span><a href="DueLog.html" class="tsd-signature-type" data-tsd-kind="Interface">DueLog</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Log message to process containing this loggable value at the specified <a href="DueLog.html#index">index</a>.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4><div><p>Either new loggable value representation, or nothing or <code>this</code> value itself to not replace its loggable
+representation.</p>
+</div></li></ul></section></section></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class=""><a href="../modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="../modules/DueLog.html">Due<wbr/>Log</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="current tsd-kind-interface tsd-has-type-parameter"><a href="Loggable.html" class="tsd-kind-icon">Loggable</a><ul><li class="tsd-kind-method tsd-parent-kind-interface"><a href="Loggable.html#toLog" class="tsd-kind-icon">to<wbr/>Log</a></li></ul></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="../assets/main.js"></script></body></html>
