@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Module @proc7ts/logger
+ * @module @proc7ts/logger
  */
 export * from './headless-logger';
 export * from './loggable';
