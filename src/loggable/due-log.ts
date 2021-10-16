@@ -164,7 +164,7 @@ export function dueLog<TTarget extends DueLog.Target>(
       if (toLog === undefined || toLog === value) {
         ++due.index;
       } else if (!isLoggable(toLog) && Array.isArray(toLog)) {
-        line.splice(index, 1, ...toLog);
+        line.splice(index, 1, ...(toLog as unknown[]));
       } else {
         line[index] = toLog;
       }
