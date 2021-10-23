@@ -34,7 +34,7 @@ describe('consoleLogger', () => {
     });
     it('logs empty message to console', () => {
       consoleLogger.error();
-      expect(logSpy).toHaveBeenCalledWith();
+      expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
     it('processes loggable values', () => {
 
@@ -72,7 +72,7 @@ describe('consoleLogger', () => {
     });
     it('logs empty message to console', () => {
       consoleLogger.warn();
-      expect(logSpy).toHaveBeenCalledWith();
+      expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
   });
 
@@ -99,7 +99,7 @@ describe('consoleLogger', () => {
     });
     it('logs empty message to console', () => {
       consoleLogger.info();
-      expect(logSpy).toHaveBeenCalledWith();
+      expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
   });
 
@@ -126,7 +126,7 @@ describe('consoleLogger', () => {
     });
     it('logs empty message to console', () => {
       consoleLogger.debug();
-      expect(logSpy).toHaveBeenCalledWith();
+      expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
   });
 
@@ -153,7 +153,7 @@ describe('consoleLogger', () => {
     });
     it('logs empty message to console', () => {
       consoleLogger.trace();
-      expect(logSpy).toHaveBeenCalledWith();
+      expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
   });
 
