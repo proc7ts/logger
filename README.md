@@ -1,12 +1,11 @@
-Logger API
-==========
+# Logger API
 
 [![NPM][npm-image]][npm-url]
 [![Build Status][build-status-img]][build-status-link]
 [![Code Quality][quality-img]][quality-link]
 [![Coverage][coverage-img]][coverage-link]
 [![GitHub Project][github-image]][github-url]
-[![API Documentation][api-docs-image]][API documentation]
+[![API Documentation][api-docs-image]][api documentation]
 
 This package contains a logging API, such as [Logger] and [Loggable] interfaces along with some tools for their
 processing and very basic [logger implementations].
@@ -25,13 +24,12 @@ mechanisms (e.g. log files), and customizable log formats.
 [github-image]: https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational
 [github-url]: https://github.com/proc7ts/logger
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
-[API documentation]: https://proc7ts.github.io/logger/
+[api documentation]: https://proc7ts.github.io/logger/
 [@run-z/log-z]: https://www.npmjs.com/package/@run-z/log-z
 
+## Logger
 
-Logger
-------
-[Logger]: #logger
+[logger]: #logger
 
 `Logger` interface declares methods corresponding to generic logger levels:
 
@@ -43,10 +41,9 @@ Logger
 
 Each method accepts arbitrary number of arguments.
 
+## Loggable Values
 
-Loggable Values
----------------
-[Loggable]: #loggable-values
+[loggable]: #loggable-values
 
 An object passes as an argument to one of the `Logger` methods can customize how it is logged by implementing a
 `toLog()` method of `Loggable` interface.
@@ -62,8 +59,9 @@ This parameter has the following properties that can be directly manipulated:
 - `on` - A hint indicating the logging stage.
 
   A `toLog()` method may wish to conditionally process the message depending on the stage.
-  
+
   Possible values are:
+
   - `'in'` - _input stage_. Set for the logger input. I.e., for the log line passed to the logger method.
   - `'out'` - _output stage_. Set by log writer. I.e., right before the message written to the log.
   - `undefined` - _default stage_. When set, the value should be processed unconditionally.
@@ -75,15 +73,13 @@ This parameter has the following properties that can be directly manipulated:
 - `index` - An index of currently processed element of the log `line`.
 
   May be equal to the log line length to indicate additional value processing that may affect the message to log.
-  
+
   Can be modified to specify the next element to process.
 
 Every logger recognizes `Loggable` instances and processes them accordingly. To process the log line manually a
 `dueLog()` function can be used.
 
-
-Tagged Log Line
----------------
+## Tagged Log Line
 
 The [Logger] methods allow to log any values. The arguments passed to one of these method called _log line_. It is up to
 the logger implementation of how to format the log line.
@@ -112,9 +108,8 @@ The `logline`-tagged template formats the log line accordingly the following rul
 All [Loggable] values processed before being joined into string. They may be processed as many times as requested.
 The final joining happens at the output (`'out'`) or default (`undefined`) logging stage.
 
+## Logger Implementations
 
-Logger Implementations
-----------------------
 [logger implementations]: #logger-implementations
 
 ### Console Logger
@@ -126,18 +121,15 @@ Note that the first parameter isn't treated in any special way. I.e., it is not 
 [console]: https://developer.mozilla.org/en-US/docs/Web/API/Console
 [format string]: https://developer.mozilla.org/en-US/docs/Web/API/Console#using_string_substitutions
 
-
 ### Processing Logger
 
 `processingLogger()` function creates a logger that processes `Loggable` values and logs with another logger.
-
 
 ### Proxy Logger
 
 `proxyLogger()` function creates a logger that proxies logging to another one.
 
 The target logger can change dynamically.
-
 
 ### Silent Logger
 
