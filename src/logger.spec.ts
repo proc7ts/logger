@@ -23,7 +23,7 @@ describe('Logger', () => {
   it('logs to most recent logger', () => {
 
     const testLogger = {
-      error: jest.fn<void, unknown[]>(),
+      error: jest.fn<(...args: unknown[]) => void>(),
     } as Partial<Logger> as Logger;
 
     cxBuilder.provide(cxConstAsset(Logger, testLogger));
@@ -44,7 +44,7 @@ describe('Logger', () => {
 
   describe('by default', () => {
 
-    let errorSpy: SpyInstance<void, unknown[]>;
+    let errorSpy: SpyInstance<(...args: unknown[]) => void>;
 
     beforeEach(() => {
       errorSpy = spyOn(consoleLogger, 'error').mockImplementation(() => void 0);

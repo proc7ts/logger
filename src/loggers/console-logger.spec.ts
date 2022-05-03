@@ -5,7 +5,7 @@ import { consoleLogger } from './console-logger';
 
 describe('consoleLogger', () => {
 
-  let logSpy: SpyInstance<void, unknown[]>;
+  let logSpy: SpyInstance<(...args: unknown[]) => void>;
 
   afterEach(() => {
     logSpy.mockRestore();
