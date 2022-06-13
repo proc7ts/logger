@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { dueLog } from './due-log';
-import { logDefer } from './log-defer';
+import { dueLog } from './due-log.js';
+import { logDefer } from './log-defer.js';
 
 describe('logDefer', () => {
   it('is not expanded on input', () => {

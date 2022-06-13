@@ -1,5 +1,5 @@
-import { HeadlessLogger } from '../headless-logger';
-import { Logger } from '../logger';
+import { HeadlessLogger } from '../headless-logger.js';
+import { Logger } from '../logger.js';
 
 /**
  * Creates a logger that proxies logging to another one.

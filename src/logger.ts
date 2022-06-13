@@ -1,5 +1,5 @@
 import { CxEntry, CxGlobals, cxRecent, cxScoped } from '@proc7ts/context-values';
-import { consoleLogger, proxyLogger } from './loggers';
+import { consoleLogger, proxyLogger } from './loggers/mod.js';
 
 /**
  * Basic logger interface.

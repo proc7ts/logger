@@ -7,7 +7,7 @@ import typescript from 'typescript';
 
 export default defineConfig({
   input: {
-    logger: './src/index.ts',
+    logger: './src/mod.ts',
   },
   plugins: [
     ts({
@@ -19,14 +19,15 @@ export default defineConfig({
   ],
   external: externalModules(),
   output: {
-    dir: '.',
+    dir: 'dist',
     format: 'esm',
     sourcemap: true,
-    entryFileNames: 'dist/[name].js',
+    entryFileNames: '[name].js',
     plugins: [
       flatDts({
         tsconfig: 'tsconfig.main.json',
-        lib: ['ES2019'],
+        lib: ['ES2022'],
+        file: 'logger.d.ts',
         compilerOptions: {
           declarationMap: true,
         },

@@ -1,5 +1,5 @@
-import { DueLog } from './due-log';
-import { Loggable } from './loggable';
+import { DueLog } from './due-log.js';
+import { Loggable } from './loggable.js';
 
 const logline$eachWsPattern = /\s+/g;
 const logline$insertSpace = (): string => ' ';

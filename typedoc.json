@@ -1,5 +1,6 @@
 {
   "entryPoints": ["src/index.ts"],
+  "excludePrivate": true,
   "name": "Logger",
   "out": "./target/typedoc",
   "tsconfig": "tsconfig.main.json"
