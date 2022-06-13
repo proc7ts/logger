@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals
 import { CxBuilder, cxConstAsset } from '@proc7ts/context-builder';
 import { CxGlobals } from '@proc7ts/context-values';
 import { SpyInstance, spyOn } from 'jest-mock';
-import { Logger } from './logger';
-import { consoleLogger } from './loggers';
+import { Logger } from './logger.js';
+import { consoleLogger } from './loggers/mod.js';
 
 describe('Logger', () => {
 

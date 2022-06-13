@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { silentLogger } from './silent-logger';
+import { silentLogger } from './silent-logger.js';
 
 describe('silentLogger', () => {
   describe('error', () => {

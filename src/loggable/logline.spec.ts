@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals';
-import { Logger } from '../logger';
-import { processingLogger } from '../loggers';
-import { Loggable } from './loggable';
-import { logline } from './logline';
+import { Logger } from '../logger.js';
+import { processingLogger } from '../loggers/mod.js';
+import { Loggable } from './loggable.js';
+import { logline } from './logline.js';
 
 describe('logline', () => {
 

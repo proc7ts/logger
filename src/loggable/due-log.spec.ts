@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { dueLog } from './due-log';
-import { Loggable } from './loggable';
+import { dueLog } from './due-log.js';
+import { Loggable } from './loggable.js';
 
 describe('dueLog', () => {
 

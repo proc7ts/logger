@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { SpyInstance } from 'jest-mock';
-import { Loggable } from '../loggable';
-import { consoleLogger } from './console-logger';
+import { Loggable } from '../loggable/mod.js';
+import { consoleLogger } from './console-logger.js';
 
 describe('consoleLogger', () => {
 

@@ -1,7 +1,7 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { Loggable } from '../loggable';
-import { Logger } from '../logger';
-import { processingLogger } from './processing-logger';
+import { Loggable } from '../loggable/mod.js';
+import { Logger } from '../logger.js';
+import { processingLogger } from './processing-logger.js';
 
 describe('processingLogger', () => {
   it('processes loggable values', () => {

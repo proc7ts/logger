@@ -1,6 +1,6 @@
-import { HeadlessLogger } from '../headless-logger';
-import { dueLog } from '../loggable';
-import { Logger } from '../logger';
+import { HeadlessLogger } from '../headless-logger.js';
+import { dueLog } from '../loggable/mod.js';
+import { Logger } from '../logger.js';
 
 /**
  * Creates a logger that processes {@link Loggable} values and logs with another logger.

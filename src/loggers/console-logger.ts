@@ -1,5 +1,5 @@
-import { HeadlessLogger } from '../headless-logger';
-import { processingLogger } from './processing-logger';
+import { HeadlessLogger } from '../headless-logger.js';
+import { processingLogger } from './processing-logger.js';
 
 const consoleLogger$log = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
   if (typeof args[0] === 'string') {

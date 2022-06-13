@@ -1,4 +1,4 @@
-import { isLoggable, Loggable } from './loggable';
+import { isLoggable, Loggable } from './loggable.js';
 
 /**
  * A message about to be logged.

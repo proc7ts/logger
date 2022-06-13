@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { isLoggable, Loggable } from './loggable';
+import { isLoggable, Loggable } from './loggable.js';
 
 describe('isLoggable', () => {
   it('is `true` for loggable object', () => {

@@ -1,4 +1,4 @@
-import { DueLog } from './due-log';
+import { DueLog } from './due-log.js';
 
 /**
  * A value that may be logged in a custom way.
