@@ -6,7 +6,6 @@ import { isLoggable, Loggable } from './loggable.js';
  * Such message can be additionally {@link Loggable.toLog processed} before it is written to the log.
  */
 export interface DueLog {
-
   /**
    * A hint indicating the logging stage.
    *
@@ -36,11 +35,9 @@ export interface DueLog {
    * Can be modified to specify the next element to process.
    */
   index: number;
-
 }
 
 export namespace DueLog {
-
   /**
    * A message to process before being logged.
    *
@@ -48,7 +45,6 @@ export namespace DueLog {
    * by {@link dueLog} before returned.
    */
   export interface Target {
-
     /**
      * A hint indicating the logging stage.
      *
@@ -76,7 +72,6 @@ export namespace DueLog {
      * @see DueLog.index
      */
     index?: number | undefined;
-
   }
 
   /**
@@ -85,7 +80,6 @@ export namespace DueLog {
    * @typeParam TTarget - Processed message type.
    */
   export interface Handlers<TTarget extends DueLog.Target = DueLog.Target> {
-
     /**
      * Handles raw (i.e. non-{@link Loggable}) value.
      *
@@ -115,9 +109,7 @@ export namespace DueLog {
      * representation.
      */
     onLoggable?(this: void, target: TTarget & DueLog, value: Loggable): void | unknown;
-
   }
-
 }
 
 /**
@@ -132,18 +124,14 @@ export namespace DueLog {
  * @see Loggable.toLog for loggable value processing rules.
  */
 export function dueLog<TTarget extends DueLog.Target>(
-    target: TTarget,
-    handlers?: DueLog.Handlers<TTarget>,
+  target: TTarget,
+  handlers?: DueLog.Handlers<TTarget>,
 ): TTarget & DueLog;
 
 export function dueLog<TTarget extends DueLog.Target>(
-    target: TTarget,
-    {
-      onRaw = DueLog$onRaw,
-      onLoggable = DueLog$onLoggable,
-    }: DueLog.Handlers<TTarget> = {},
+  target: TTarget,
+  { onRaw = DueLog$onRaw, onLoggable = DueLog$onLoggable }: DueLog.Handlers<TTarget> = {},
 ): TTarget & DueLog {
-
   const { index: firstIndex = 0 } = target;
 
   target.index = Math.max(firstIndex, 0);
@@ -151,12 +139,9 @@ export function dueLog<TTarget extends DueLog.Target>(
   const due = target as TTarget & DueLog;
 
   while (due.index < due.line.length) {
-
     const { line, index } = due;
     const value = line[index];
-    const toLog = isLoggable(value)
-        ? onLoggable(due, value)
-        : onRaw(due, value);
+    const toLog = isLoggable(value) ? onLoggable(due, value) : onRaw(due, value);
 
     if (due.index !== index) {
       due.index = Math.max(due.index, 0);

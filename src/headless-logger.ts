@@ -7,7 +7,6 @@ import { Logger } from './logger.js';
  * as functions.
  */
 export interface HeadlessLogger extends Logger {
-
   error(this: void, ...args: unknown[]): void;
 
   warn(this: void, ...args: unknown[]): void;
@@ -17,5 +16,4 @@ export interface HeadlessLogger extends Logger {
   debug(this: void, ...args: unknown[]): void;
 
   trace(this: void, ...args: unknown[]): void;
-
 }

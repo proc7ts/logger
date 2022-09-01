@@ -12,11 +12,10 @@ import { Loggable } from './loggable.js';
  * @returns New loggable value.
  */
 export function logDefer<TTarget extends DueLog.Target>(
-    toLog: (this: void, target: TTarget) => unknown | void,
+  toLog: (this: void, target: TTarget) => unknown | void,
 ): Loggable<TTarget> {
   return {
     toLog(target) {
-
       const { on = 'out' } = target;
 
       if (on === 'out') {

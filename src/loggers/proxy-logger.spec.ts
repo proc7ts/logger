@@ -3,7 +3,6 @@ import { Logger } from '../logger.js';
 import { proxyLogger } from './proxy-logger.js';
 
 describe('proxyLogger', () => {
-
   let proxied: Logger;
   let proxied1: Logger;
   let proxied2: Logger;
@@ -97,5 +96,4 @@ describe('proxyLogger', () => {
       expect(proxied2.trace).toHaveBeenCalledTimes(1);
     });
   });
-
 });

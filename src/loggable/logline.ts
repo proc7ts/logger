@@ -4,7 +4,6 @@ import { Loggable } from './loggable.js';
 const logline$eachWsPattern = /\s+/g;
 const logline$insertSpace = (): string => ' ';
 const logline$append = (result: unknown[], str: string): void => {
-
   const text = str.replace(logline$eachWsPattern, logline$insertSpace);
 
   if (text) {
@@ -23,7 +22,6 @@ const logline$join = (result: unknown[], joins: unknown[]): void => {
 
   const loggable: Loggable = {
     toLog(target: DueLog): string | void {
-
       // Remember the containing log line and position.
       const { on = 'out', line, index } = target;
 
@@ -90,11 +88,10 @@ const logline$join = (result: unknown[], joins: unknown[]): void => {
  * @returns Processed log line additionally implementing {@link Loggable} interface.
  */
 export function logline(
-    strings: TemplateStringsArray,
-    ...args: readonly unknown[]
+  strings: TemplateStringsArray,
+  ...args: readonly unknown[]
 ): unknown[] & Loggable {
-
-  const result = ([] as unknown[]) as unknown[] & Loggable;
+  const result = [] as unknown[] as unknown[] & Loggable;
 
   result.toLog = () => result.slice(); // Return a non-Loggable clone.
 
@@ -107,7 +104,6 @@ export function logline(
   logline$append(joinArg ? joins : result, prefix);
 
   for (let i = 0; i < length; ++i) {
-
     const arg = args[i];
     const nextSuffix = strings[i + 1];
     const suffix = nextSuffix.trimLeft();

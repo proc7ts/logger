@@ -3,7 +3,6 @@ import { dueLog } from './due-log.js';
 import { Loggable } from './loggable.js';
 
 describe('dueLog', () => {
-
   const logAsTest = loggable('test');
   const logAsNone = loggable([]);
   const logAsArray = loggable([11, 22, 33]);
@@ -31,13 +30,15 @@ describe('dueLog', () => {
     expect(dueLog({ line: [1, 2], index: -1 })).toEqual({ line: [1, 2], index: 2 });
   });
   it('resets too large index to line length', () => {
-    expect(dueLog({ line: [1, logAsTest, 2], index: 23 })).toEqual({ line: [1, logAsTest, 2], index: 3 });
+    expect(dueLog({ line: [1, logAsTest, 2], index: 23 })).toEqual({
+      line: [1, logAsTest, 2],
+      index: 3,
+    });
   });
   it('does not alter raw value', () => {
     expect(dueLog({ line: [1, 2, 'test'] })).toEqual({ line: [1, 2, 'test'], index: 3 });
   });
   it('handles log line element replacement', () => {
-
     const toLog: Loggable = {
       toLog(target) {
         target.line[target.index] = logAsTest;
@@ -50,13 +51,19 @@ describe('dueLog', () => {
     expect(dueLog({ line: [1, logAsTest, 2] })).toEqual({ line: [1, 'test', 2], index: 3 });
   });
   it('recursively replaces log line element by loggable representation', () => {
-    expect(dueLog({ line: [1, loggable(logAsTest), 2] })).toEqual({ line: [1, 'test', 2], index: 3 });
+    expect(dueLog({ line: [1, loggable(logAsTest), 2] })).toEqual({
+      line: [1, 'test', 2],
+      index: 3,
+    });
   });
   it('replaces log line element by representation elements', () => {
     expect(dueLog({ line: [1, logAsArray, 2] })).toEqual({ line: [1, 11, 22, 33, 2], index: 5 });
   });
   it('recursively replaces log line element by representation elements', () => {
-    expect(dueLog({ line: [1, loggable([logAsArray]), 2] })).toEqual({ line: [1, 11, 22, 33, 2], index: 5 });
+    expect(dueLog({ line: [1, loggable([logAsArray]), 2] })).toEqual({
+      line: [1, 11, 22, 33, 2],
+      index: 5,
+    });
   });
   it('removes log line element', () => {
     expect(dueLog({ line: [1, logAsNone, 2] })).toEqual({ line: [1, 2], index: 2 });
@@ -68,7 +75,10 @@ describe('dueLog', () => {
     expect(dueLog({ line: [1, logUpdater, 2] })).toEqual({ line: [1, '*', 2], index: 3 });
   });
   it('switches processed element', () => {
-    expect(dueLog({ line: [logMover, logAsArray, 2] })).toEqual({ line: [logMover, logAsArray, 2], index: 3 });
+    expect(dueLog({ line: [logMover, logAsArray, 2] })).toEqual({
+      line: [logMover, logAsArray, 2],
+      index: 3,
+    });
   });
   it('replaces log line', () => {
     expect(dueLog({ line: [logAsTest, logReplacer] })).toEqual({ line: [11, 22, 33], index: 3 });

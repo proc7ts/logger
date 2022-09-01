@@ -6,7 +6,6 @@ import { DueLog } from './due-log.js';
  * @typeParam TTarget - Processed message type.
  */
 export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
-
   /**
    * Performs additional message processing before it is logged.
    *
@@ -36,7 +35,6 @@ export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
    * representation.
    */
   toLog(target: TTarget & DueLog): void | unknown;
-
 }
 
 /**
@@ -47,6 +45,8 @@ export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
  * @returns `true` is the given `value` has a {@link Loggable.toLog toLog} method, or `false` otherwise.
  */
 export function isLoggable(value: unknown): value is Loggable {
-  return (typeof value === 'object' && !!value || typeof value === 'function')
-      && typeof (value as Partial<Loggable>).toLog === 'function';
+  return (
+    ((typeof value === 'object' && !!value) || typeof value === 'function')
+    && typeof (value as Partial<Loggable>).toLog === 'function'
+  );
 }

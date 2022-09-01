@@ -5,7 +5,6 @@ import { consoleLogger, proxyLogger } from './loggers/mod.js';
  * Basic logger interface.
  */
 export interface Logger {
-
   /**
    * Logs error.
    *
@@ -42,7 +41,6 @@ export interface Logger {
    * @param args - Arbitrary arguments to log.
    */
   trace(...args: unknown[]): void;
-
 }
 
 /**
@@ -51,18 +49,17 @@ export interface Logger {
  * Logs to {@link consoleLogger console} by default.
  */
 export const Logger: CxEntry<Logger> = {
-  perContext: (/*#__PURE__*/ cxScoped(
-      CxGlobals,
-      (/*#__PURE__*/ cxRecent({
-        create: (recent, _) => recent,
-        byDefault: _ => consoleLogger,
-        assign({ get, to }) {
+  perContext: /*#__PURE__*/ cxScoped(
+    CxGlobals,
+    /*#__PURE__*/ cxRecent({
+      create: (recent, _) => recent,
+      byDefault: _ => consoleLogger,
+      assign({ get, to }) {
+        const logger = proxyLogger(get);
 
-          const logger = proxyLogger(get);
-
-          return receiver => to((_, by) => receiver(logger, by));
-        },
-      })),
-  )),
+        return receiver => to((_, by) => receiver(logger, by));
+      },
+    }),
+  ),
   toString: () => '[Logger]',
 };

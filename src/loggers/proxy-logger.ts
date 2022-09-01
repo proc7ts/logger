@@ -10,11 +10,6 @@ import { Logger } from '../logger.js';
  * @returns New headless proxy logger.
  */
 export function proxyLogger(getLogger: (this: void) => Logger): HeadlessLogger {
-
-  const logMethod = (log: (logger: Logger, args: unknown[]) => void): (...args: unknown[]) => void => (
-      ...args
-  ) => log(getLogger(), args);
-
   return {
     error: logMethod((logger, args) => logger.error(...args)),
     warn: logMethod((logger, args) => logger.warn(...args)),
@@ -22,4 +17,8 @@ export function proxyLogger(getLogger: (this: void) => Logger): HeadlessLogger {
     debug: logMethod((logger, args) => logger.debug(...args)),
     trace: logMethod((logger, args) => logger.trace(...args)),
   };
+
+  function logMethod(log: (logger: Logger, args: unknown[]) => void): (...args: unknown[]) => void {
+    return (...args) => log(getLogger(), args);
+  }
 }

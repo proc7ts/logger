@@ -4,7 +4,6 @@ import { Loggable } from '../loggable/mod.js';
 import { consoleLogger } from './console-logger.js';
 
 describe('consoleLogger', () => {
-
   let logSpy: SpyInstance<(...args: unknown[]) => void>;
 
   afterEach(() => {
@@ -12,9 +11,10 @@ describe('consoleLogger', () => {
   });
 
   describe('error', () => {
-
     beforeEach(() => {
-      logSpy = jest.spyOn(console, 'error').mockImplementation(() => { /* do not log */ });
+      logSpy = jest.spyOn(console, 'error').mockImplementation(() => {
+        /* do not log */
+      });
     });
 
     it('logs message to console', () => {
@@ -22,7 +22,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
     });
     it('logs object to console', () => {
-
       const object = { name: 'test' };
 
       consoleLogger.error(object, 1, 2, 3);
@@ -37,7 +36,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
     it('processes loggable values', () => {
-
       const loggable: Loggable = {
         toLog() {
           return 'replacement';
@@ -50,9 +48,10 @@ describe('consoleLogger', () => {
   });
 
   describe('warn', () => {
-
     beforeEach(() => {
-      logSpy = jest.spyOn(console, 'warn').mockImplementation(() => { /* do not log */ });
+      logSpy = jest.spyOn(console, 'warn').mockImplementation(() => {
+        /* do not log */
+      });
     });
 
     it('logs message to console', () => {
@@ -60,7 +59,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
     });
     it('logs object to console', () => {
-
       const object = { name: 'test' };
 
       consoleLogger.warn(object, 1, 2, 3);
@@ -77,9 +75,10 @@ describe('consoleLogger', () => {
   });
 
   describe('info', () => {
-
     beforeEach(() => {
-      logSpy = jest.spyOn(console, 'info').mockImplementation(() => { /* do not log */ });
+      logSpy = jest.spyOn(console, 'info').mockImplementation(() => {
+        /* do not log */
+      });
     });
 
     it('logs message to console', () => {
@@ -87,7 +86,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
     });
     it('logs object to console', () => {
-
       const object = { name: 'test' };
 
       consoleLogger.info(object, 1, 2, 3);
@@ -104,9 +102,10 @@ describe('consoleLogger', () => {
   });
 
   describe('debug', () => {
-
     beforeEach(() => {
-      logSpy = jest.spyOn(console, 'debug').mockImplementation(() => { /* do not log */ });
+      logSpy = jest.spyOn(console, 'debug').mockImplementation(() => {
+        /* do not log */
+      });
     });
 
     it('logs message to console', () => {
@@ -114,7 +113,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
     });
     it('logs object to console', () => {
-
       const object = { name: 'test' };
 
       consoleLogger.debug(object, 1, 2, 3);
@@ -131,9 +129,10 @@ describe('consoleLogger', () => {
   });
 
   describe('trace', () => {
-
     beforeEach(() => {
-      logSpy = jest.spyOn(console, 'trace').mockImplementation(() => { /* do not log */ });
+      logSpy = jest.spyOn(console, 'trace').mockImplementation(() => {
+        /* do not log */
+      });
     });
 
     it('logs message to console', () => {
@@ -141,7 +140,6 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith('%s', 'message', 1, 2, 3);
     });
     it('logs object to console', () => {
-
       const object = { name: 'test' };
 
       consoleLogger.trace(object, 1, 2, 3);
@@ -156,5 +154,4 @@ describe('consoleLogger', () => {
       expect(logSpy).toHaveBeenCalledWith(...([] as unknown[] as [unknown, ...unknown[]]));
     });
   });
-
 });

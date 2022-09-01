@@ -6,7 +6,6 @@ import { Logger } from './logger.js';
 import { consoleLogger } from './loggers/mod.js';
 
 describe('Logger', () => {
-
   let cxBuilder: CxBuilder;
 
   beforeEach(() => {
@@ -21,7 +20,6 @@ describe('Logger', () => {
   });
 
   it('logs to most recent logger', () => {
-
     const testLogger = {
       error: jest.fn<(...args: unknown[]) => void>(),
     } as Partial<Logger> as Logger;
@@ -36,14 +34,12 @@ describe('Logger', () => {
     expect(testLogger.error).toHaveBeenCalledTimes(1);
   });
   it('is singleton', () => {
-
     const cxBuilder2 = new CxBuilder(get => ({ get }), cxBuilder);
 
     expect(cxBuilder2.get(Logger)).toBe(logger);
   });
 
   describe('by default', () => {
-
     let errorSpy: SpyInstance<(...args: unknown[]) => void>;
 
     beforeEach(() => {
@@ -54,7 +50,6 @@ describe('Logger', () => {
     });
 
     it('logs to console', () => {
-
       const error = new Error('Test');
 
       logger.error('Error', error);

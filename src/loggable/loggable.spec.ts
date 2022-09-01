@@ -3,7 +3,6 @@ import { isLoggable, Loggable } from './loggable.js';
 
 describe('isLoggable', () => {
   it('is `true` for loggable object', () => {
-
     const value: Loggable = {
       toLog: () => 'test',
     };
@@ -11,7 +10,6 @@ describe('isLoggable', () => {
     expect(isLoggable(value)).toBe(true);
   });
   it('is `true` for loggable function', () => {
-
     const value = (): void => void 0;
 
     value.toLog = () => 'test';
@@ -28,7 +26,6 @@ describe('isLoggable', () => {
     expect(isLoggable(123)).toBe(false);
   });
   it('is `false` for non-loggable object', () => {
-
     const value = {
       toLog: 'test',
     };

@@ -5,7 +5,6 @@ import { Loggable } from './loggable.js';
 import { logline } from './logline.js';
 
 describe('logline', () => {
-
   const logToNone: Loggable = {
     toLog: () => [],
   };
@@ -48,15 +47,16 @@ describe('logline', () => {
     expect(log(logline`1 ${2}- ${3}4`)).toEqual(['1', '2-', '34']);
   });
   it('normalizes strings', () => {
-    expect(log(logline`
+    expect(
+      log(logline`
       prefix
       string
       ${1}
       suffix \t  string
-    `)).toEqual(['prefix string', 1, 'suffix string']);
+    `),
+    ).toEqual(['prefix string', 1, 'suffix string']);
   });
   it('joins loggable values', () => {
-
     const loggable: Loggable = {
       toLog: () => '*',
     };
@@ -64,7 +64,6 @@ describe('logline', () => {
     expect(log(logline`-${loggable}-`)).toEqual(['-*-']);
   });
   it('joins loggable values on output', () => {
-
     const loggable: Loggable = {
       toLog: () => '*',
     };
@@ -76,7 +75,13 @@ describe('logline', () => {
     expect(logOn('out', item)).toEqual(['-*-']);
   });
   it('can be expanded explicitly or automatically', () => {
-    expect(log('(start)', ...logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
+    expect(log('(start)', ...logline`1 ${2} 3`, '(end)')).toEqual([
+      '(start)',
+      '1',
+      2,
+      '3',
+      '(end)',
+    ]);
     expect(log('(start)', logline`1 ${2} 3`, '(end)')).toEqual(['(start)', '1', 2, '3', '(end)']);
   });
   it('produces nothing on empty log line', () => {
@@ -101,7 +106,6 @@ describe('logline', () => {
   }
 
   function logOn(on: string | undefined, ...args: unknown[]): unknown[] {
-
     let logged!: unknown[];
     const logger: Partial<Logger> = {
       info(...args: unknown[]) {
@@ -113,5 +117,4 @@ describe('logline', () => {
 
     return logged;
   }
-
 });

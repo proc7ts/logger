@@ -11,13 +11,12 @@ import { Logger } from '../logger.js';
  * @returns New headless processing logger.
  */
 export function processingLogger(logger: Logger, { on }: { on?: string } = {}): HeadlessLogger {
+  const logMethod
+    = (log: (...args: unknown[]) => void): ((...args: unknown[]) => void) => (...args) => {
+      const { line } = dueLog({ on, line: args });
 
-  const logMethod = (log: (...args: unknown[]) => void): (...args: unknown[]) => void => (...args) => {
-
-    const { line } = dueLog({ on, line: args });
-
-    log(...line);
-  };
+      log(...line);
+    };
 
   return {
     error: logMethod((...args) => logger.error(...args)),
