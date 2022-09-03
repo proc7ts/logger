@@ -1,8 +1,8 @@
 import { HeadlessLogger } from '../headless-logger.js';
 import { processingLogger } from './processing-logger.js';
 
-const consoleLogger$log
-  = (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
+const consoleLogger$log =
+  (log: (...args: unknown[]) => void) => (...args: unknown[]) => {
     if (typeof args[0] === 'string') {
       // Avoid formatting.
       log('%s', ...args);
