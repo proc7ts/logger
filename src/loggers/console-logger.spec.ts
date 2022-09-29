@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
-import { SpyInstance } from 'jest-mock';
+import { Mock } from 'jest-mock';
 import { Loggable } from '../loggable/mod.js';
 import { consoleLogger } from './console-logger.js';
 
 describe('consoleLogger', () => {
-  let logSpy: SpyInstance<(...args: unknown[]) => void>;
+  let logSpy: Mock<(...args: unknown[]) => void>;
 
   afterEach(() => {
     logSpy.mockRestore();
@@ -14,7 +14,7 @@ describe('consoleLogger', () => {
     beforeEach(() => {
       logSpy = jest.spyOn(console, 'error').mockImplementation(() => {
         /* do not log */
-      });
+      }) as typeof logSpy;
     });
 
     it('logs message to console', () => {
@@ -51,7 +51,7 @@ describe('consoleLogger', () => {
     beforeEach(() => {
       logSpy = jest.spyOn(console, 'warn').mockImplementation(() => {
         /* do not log */
-      });
+      }) as typeof logSpy;
     });
 
     it('logs message to console', () => {
@@ -78,7 +78,7 @@ describe('consoleLogger', () => {
     beforeEach(() => {
       logSpy = jest.spyOn(console, 'info').mockImplementation(() => {
         /* do not log */
-      });
+      }) as typeof logSpy;
     });
 
     it('logs message to console', () => {
@@ -105,7 +105,7 @@ describe('consoleLogger', () => {
     beforeEach(() => {
       logSpy = jest.spyOn(console, 'debug').mockImplementation(() => {
         /* do not log */
-      });
+      }) as typeof logSpy;
     });
 
     it('logs message to console', () => {
@@ -132,7 +132,7 @@ describe('consoleLogger', () => {
     beforeEach(() => {
       logSpy = jest.spyOn(console, 'trace').mockImplementation(() => {
         /* do not log */
-      });
+      }) as typeof logSpy;
     });
 
     it('logs message to console', () => {

@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { CxBuilder, cxConstAsset } from '@proc7ts/context-builder';
 import { CxGlobals } from '@proc7ts/context-values';
-import { SpyInstance, spyOn } from 'jest-mock';
+import { Mock, spyOn } from 'jest-mock';
 import { Logger } from './logger.js';
 import { consoleLogger } from './loggers/mod.js';
 
@@ -40,10 +40,10 @@ describe('Logger', () => {
   });
 
   describe('by default', () => {
-    let errorSpy: SpyInstance<(...args: unknown[]) => void>;
+    let errorSpy: Mock<(...args: unknown[]) => void>;
 
     beforeEach(() => {
-      errorSpy = spyOn(consoleLogger, 'error').mockImplementation(() => void 0);
+      errorSpy = spyOn(consoleLogger, 'error').mockImplementation(() => void 0) as typeof errorSpy;
     });
     afterEach(() => {
       errorSpy.mockRestore();

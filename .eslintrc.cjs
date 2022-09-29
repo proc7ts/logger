@@ -23,7 +23,7 @@ module.exports = {
       extends: ['@run-z/eslint-config/jest'],
       parserOptions: {
         tsconfigRootDir: __dirname,
-        project: './tsconfig.spec.json',
+        project: './tsconfig.json',
       },
     },
   ],
