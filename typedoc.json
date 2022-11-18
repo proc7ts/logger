@@ -1,7 +1,9 @@
 {
-  "entryPoints": ["src/index.ts"],
+  "entryPoints": ["src/mod.ts"],
   "excludePrivate": true,
   "name": "Logger",
   "out": "./target/typedoc",
-  "tsconfig": "tsconfig.main.json"
+  "compilerOptions": {
+    "module": 7 /* ES2022 */
+  }
 }

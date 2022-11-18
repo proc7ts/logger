@@ -1,22 +1,10 @@
 {
+  "extends": "@run-z/project-config/tsconfig.lib.json",
   "compilerOptions": {
-    "moduleResolution": "Node",
-    "module": "Node16",
-    "target": "ES2022",
-    "strict": true,
-    "experimentalDecorators": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "noEmitHelpers": true,
     "lib": ["DOM", "ES2022"],
-    "types": [],
-    "outDir": "target/js",
-    "sourceMap": true,
-    "newLine": "LF"
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "outDir": "target/js"
   },
   "include": ["src/**/*"]
 }
