@@ -37,6 +37,8 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install dependencies
+        env:
+          RUNZ_TEST_RUNNER: ts-jest
         run: pnpm install
 
       - name: Build the project
