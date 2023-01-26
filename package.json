@@ -25,7 +25,7 @@
     "default": "./dist/logger.js"
   },
   "dependencies": {
-    "@proc7ts/context-values": "^7.0.1"
+    "@proc7ts/context-values": "^7.1.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.4.0",
