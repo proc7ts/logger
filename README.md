@@ -45,10 +45,10 @@ Each method accepts arbitrary number of arguments.
 
 [loggable]: #loggable-values
 
-An object passes as an argument to one of the `Logger` methods can customize how it is logged by implementing a
+An object passed as an argument to one of the `Logger` methods can customize how it is logged by implementing a
 `toLog()` method of `Loggable` interface.
 
-In the simples case, the `toLog()` method may return another value that will be logged instead of the original one.
+In the simple case, the `toLog()` method may return another value that will be logged instead of the original one.
 
 It may also return an array of values that will be inserted to the log line instead of original value. This may be an
 empty array to completely remove the value from the log line.
@@ -100,9 +100,9 @@ consoleLogger.error(logline`
 The `logline`-tagged template formats the log line accordingly the following rules:
 
 1. Template strings and values not separated by whitespace joined into single string.
-2. The values separated by whitespaces are added to the log line as is.
+2. The values separated by whitespace are added to the log line as is.
 3. Template strings trimmed.
-4. Any number of subsequent whitespaces in template strings replaced with single space.
+4. Any number of subsequent whitespace in template strings replaced with single space.
 5. Leading and/or trailing template string removed if it became empty.
 
 All [Loggable] values processed before being joined into string. They may be processed as many times as requested.
