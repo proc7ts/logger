@@ -24,6 +24,7 @@
     "types": "./dist/logger.d.ts",
     "default": "./dist/logger.js"
   },
+  "sideEffects": false,
   "dependencies": {
     "@proc7ts/context-values": "^7.1.0"
   },
