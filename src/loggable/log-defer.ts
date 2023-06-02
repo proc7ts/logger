@@ -18,9 +18,7 @@ export function logDefer<TTarget extends DueLog.Target>(
     toLog(target) {
       const { on = 'out' } = target;
 
-      if (on === 'out') {
-        return toLog(target);
-      }
+      return on === 'out' ? toLog(target) : undefined;
     },
   };
 }
