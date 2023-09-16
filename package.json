@@ -27,7 +27,6 @@
   "sideEffects": false,
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@proc7ts/context-builder": "^7.0.2",
     "@run-z/eslint-config": "^3.5.0",
     "@run-z/project-config": "^0.20.0",
     "@swc/core": "^1.3.85",
