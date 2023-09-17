@@ -3,13 +3,13 @@ import { isLoggable, Loggable } from './loggable.js';
 /**
  * A message about to be logged.
  *
- * Such message can be additionally {@link Loggable.toLog processed} before it is written to the log.
+ * Such message can be additionally {@link Loggable#toLog processed} before it is written to the log.
  */
 export interface DueLog {
   /**
    * A hint indicating the logging stage.
    *
-   * A {@link Loggable.toLog log processor} may wish to conditionally process the message depending on the stage.
+   * A {@link Loggable#toLog log processor} may wish to conditionally process the message depending on the stage.
    *
    * Possible values are:
    *

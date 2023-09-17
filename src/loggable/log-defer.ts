@@ -4,10 +4,10 @@ import { Loggable } from './loggable.js';
 /**
  * Creates a loggable value processed when the message is actually logged.
  *
- * The value will be {@link Loggable.toLog expanded} at `out` {@link DueLog.on logging stage}.
+ * The value will be {@link Loggable#toLog expanded} at `out` {@link DueLog#on logging stage}.
  *
  * @param toLog - Performs additional message processing before it is logged. It will be called by
- * {@link @Loggable.toLog} method implementation at appropriate logging stage.
+ * {@link Loggable#toLog} method implementation at appropriate logging stage.
  *
  * @returns New loggable value.
  */
