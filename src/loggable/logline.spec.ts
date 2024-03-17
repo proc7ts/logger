@@ -68,7 +68,7 @@ describe('logline', () => {
       toLog: () => '*',
     };
 
-    const [item] = logOn('in', logline`-${loggable}-`)!;
+    const [item] = logOn('in', logline`-${loggable}-`);
 
     expect(typeof item).toBe('object');
 
