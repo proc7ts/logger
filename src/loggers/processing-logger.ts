@@ -12,7 +12,8 @@ import { Logger } from '../logger.js';
  */
 export function processingLogger(logger: Logger, { on }: { on?: string } = {}): HeadlessLogger {
   const logMethod =
-    (log: (...args: unknown[]) => void): ((...args: unknown[]) => void) => (...args) => {
+    (log: (...args: unknown[]) => void): ((...args: unknown[]) => void) =>
+    (...args) => {
       const { line } = dueLog({ on, line: args });
 
       log(...line);

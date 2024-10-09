@@ -1,10 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
-import { Mock } from 'jest-mock';
 import { Loggable } from '../loggable/mod.js';
 import { consoleLogger } from './console-logger.js';
 
 describe('consoleLogger', () => {
-  let logSpy: Mock<(...args: unknown[]) => void>;
+  let logSpy: jest.Mock<(...args: unknown[]) => void>;
 
   afterEach(() => {
     logSpy.mockRestore();

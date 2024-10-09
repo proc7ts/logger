@@ -46,7 +46,7 @@ export interface Loggable<TTarget extends DueLog.Target = DueLog.Target> {
  */
 export function isLoggable(value: unknown): value is Loggable {
   return (
-    ((typeof value === 'object' && !!value) || typeof value === 'function')
-    && typeof (value as Partial<Loggable>).toLog === 'function'
+    ((typeof value === 'object' && !!value) || typeof value === 'function') &&
+    typeof (value as Partial<Loggable>).toLog === 'function'
   );
 }
